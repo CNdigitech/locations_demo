@@ -1,0 +1,46 @@
+
+   
+    <div class="my-content"> 
+        <h2> Regions </h2>
+        <div class="new-btn float-right">
+            <%= link_to new_region_master_path, class:"btn btn-outline-dark" do %>
+                <span class="glyphicon glyphicon-plus"></span>
+                New Region
+            <% end %>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Region</th>
+                    <th>Region code</th>
+                    <th>Name</th>
+                    <th>Capital</th>
+                    <th>GPS coordinates</th>                    
+                    <th>Status</th>
+                    <th colspan="3"></th>
+                   
+                </tr>
+                </thead>
+
+                <tbody>
+                <% @region_masters.each_with_index do |region_master,index| %>
+                <tr>
+                    <td><%= index+1%></td>
+                    <td><%= region_master.region_id %></td>
+                    <td><%= region_master.region_code %></td>
+                    <td><%= region_master.name %></td>
+                    <td><%= region_master.capital %></td>
+                    <td><%= region_master.capital_gps %></td>
+                    <td><% if region_master.active_status%>Active<% else %>Inactive<%end%></td>
+                    <td><%= link_to 'Show', region_master, class:"btn btn-sm btn-default" %></td>
+                    <td><%= link_to 'Edit', edit_region_master_path(region_master), class:"btn btn-sm btn-default" %></td>
+                    <td><%= link_to 'Destroy', region_master, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-default" %></td>
+                </tr>
+                <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>

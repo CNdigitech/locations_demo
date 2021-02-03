@@ -1,0 +1,2 @@
+module TownMastersHelper
+end

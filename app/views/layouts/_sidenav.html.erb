@@ -1,0 +1,44 @@
+<div class="d-flex" id="wrapper">
+  <% if user_signed_in? %>
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">Locations Demo</div>
+      <div class="list-group list-group-flush">
+        <%# <a href="#" class="list-group-item list-group-item-action bg-light"> %>
+        <%= link_to "Regions", region_masters_path, class:"list-group-item list-group-item-action bg-light" %>
+        <%= link_to "Districts", district_masters_path, class:"list-group-item list-group-item-action bg-light" %>
+        <%= link_to "District Types", district_type_masters_path, class:"list-group-item list-group-item-action bg-light" %>      
+        <%= link_to "Towns", town_masters_path, class:"list-group-item list-group-item-action bg-light" %>       
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+    <% end %>
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <%= render 'layouts/navigation'%>
+
+     
+      <div class="container-fluid">
+        <div id="notif-msg" class="col-sm-12">
+          <%= render 'layouts/messages' %>
+        </div>
+        <%= yield %>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+  
+</div>
+
+
+    <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+      console.log("toggle engaged");
+    });
+  </script>

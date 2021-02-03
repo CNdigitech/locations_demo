@@ -1,0 +1,2 @@
+module DistrictTypeMastersHelper
+end
