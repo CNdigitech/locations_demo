@@ -29,8 +29,8 @@
                             <td><%= district_type_master.assigned_code %></td>
                             <td><%= district_type_master.name %></td>
                             <td><%= link_to 'Show', district_type_master, class:"btn btn-sm btn-default" %></td>
-                            <td><%= link_to 'Edit', edit_district_type_master_path(district_type_master), class:"btn btn-sm btn-default" %></td>
-                            <td><%= link_to 'Destroy', district_type_master, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-default" %></td>
+                            <td><%= link_to 'Edit', edit_district_type_master_path(district_type_master), class:"btn btn-sm btn-outline-dark" %></td>
+                            <td><%= link_to 'Delete', district_type_master, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-default" %></td>
                         </tr>
                     <% end %>
                 </tbody>

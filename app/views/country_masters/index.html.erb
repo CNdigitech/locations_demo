@@ -32,8 +32,8 @@
                         <td><%= country_master.name %></td>
                         <td><%= country_master.active_status %></td>
                         <td><%= country_master.del_status %></td>
-                        <td><%= link_to 'Edit', edit_country_master_path(country_master), class:"btn btn-sm btn-default" %></td>
-                        <td><%= link_to 'Destroy', country_master, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-default" %></td>
+                        <td><%= link_to 'Edit', edit_country_master_path(country_master), class:"btn btn-sm btn-outline-dark" %></td>
+                        <td><%= link_to 'Delete', country_master, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" %></td>
                     </tr>
                 <% end %>
                 </tbody>
