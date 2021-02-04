@@ -11,6 +11,8 @@ require("jquery")
 require("bootstrap")
 require("@fortawesome/fontawesome-free");
 import "../stylesheets/application";
+import "../stylesheets/main";
+import "../stylesheets/sidenav";
 document.addEventListener("turbolinks:load", function() {
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
