@@ -35,6 +35,7 @@ class DistrictMastersController < ApplicationController
         format.html { redirect_to @district_master, notice: "District master was successfully created." }
         format.json { render :show, status: :created, location: @district_master }
       else
+        logger.info "Here now ===== #{@district_master.errors.messages.inspect}"
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @district_master.errors, status: :unprocessable_entity }
       end

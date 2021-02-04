@@ -1,6 +1,32 @@
-<h1>Editing District Master</h1>
+<h1>Editing District</h1>
 
-<%= render 'form', district_master: @district_master %>
+<%#= render 'form', district_master: @district_master %>
 
-<%= link_to 'Show', @district_master %> |
-<%= link_to 'Back', district_masters_path %>
+
+<div class="my-form col-lg-6 col-lg-offset-3">
+  
+  <%= simple_form_for(@district_master) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-inputs">
+      <%#= f.input :district_id %>     
+      <%# <%= f.collection_select :region_id, @regions, :region_id,:name , label:"Region"%>
+      <%= f.input :region_id, collection: @regions, label_method: :name, value_method: :region_id, label:"Region"  %>
+      <%= f.input :district_type, collection: @district_types, label_method: :name, value_method: :assigned_code,label:"District type" %>
+      <%# <%= f.collection_select :district_type, @district_types, :assigned_code,:name , label:"District type"%>
+      <%= f.input :name %>
+      <%= f.input :capital %>
+      <%= f.input :capital_gps %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, class:"btn btn-md btn-primary" %>
+      <%= link_to 'Back', district_masters_path, class:"btn btn-md btn-outline-dark" %>
+
+    </div>
+  <% end %>
+</div>
+
+
+<%#= link_to 'Show', @district_master %> 

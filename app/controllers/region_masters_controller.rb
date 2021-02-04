@@ -13,18 +13,21 @@ class RegionMastersController < ApplicationController
   # GET /region_masters/new
   def new
     @region_master = RegionMaster.new
+    @countries = CountryMaster.all
   end
 
   # GET /region_masters/1/edit
   def edit
+    @countries = CountryMaster.all
   end
 
   # POST /region_masters or /region_masters.json
   def create
     @region_master = RegionMaster.new(region_master_params)
+    c_code = @region_master.country_code
     prefix = @region_master.name
     @region_master.region_code = prefix[0..3].downcase
-    @region_master.region_id = RegionMaster.gen_assigned_code(prefix)
+    @region_master.region_id = RegionMaster.gen_assigned_code(c_code,prefix)
 
     respond_to do |format|
       if @region_master.save
@@ -67,6 +70,6 @@ class RegionMastersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def region_master_params
-      params.require(:region_master).permit(:region_id, :region_code, :name, :capital, :capital_gps, :active_status, :del_status)
+      params.require(:region_master).permit(:country_code, :region_id, :region_code, :name, :capital, :capital_gps, :active_status, :del_status)
     end
 end

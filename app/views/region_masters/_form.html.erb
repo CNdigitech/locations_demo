@@ -6,14 +6,15 @@
 
     <div class="form-inputs">
       <%#= f.input :region_id %>
-      <%#= f.input :region_code %>
+      <%= f.input :country_code, collection: @countries, label_method: :name, value_method: :assigned_code, label:"Country"  %>
       <%= f.input :name %>
       <%= f.input :capital %>
       <%= f.input :capital_gps %>
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit %>
+      <%= f.button :submit, class:"btn btn-md btn-primary" %>
+      <%= link_to 'Back', region_masters_path, class:"btn btn-md btn-outline-dark"  %>
     </div>
   <% end %>
 </div>

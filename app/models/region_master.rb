@@ -2,12 +2,12 @@ class RegionMaster < ApplicationRecord
     self.primary_key = 'region_id'
     has_many :district_masters
 
-      def self.gen_assigned_code(param)
+      def self.gen_assigned_code(country,name)
         sql = "select nextval('region_seq')"
         val = ActiveRecord::Base.connection.execute(sql)
         val = val.values[0][0]
-        val = val.to_s.rjust(4,'0')
-        code = param[0..2].upcase
+        val = val.to_s.rjust(3,'0')
+        code = country + "-" + name[0..2].upcase
         val = code+val
         logger.info "===== assigned CODE = #{val}"
         val

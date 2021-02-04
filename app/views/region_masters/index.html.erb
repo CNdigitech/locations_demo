@@ -20,7 +20,7 @@
                     <th>Capital</th>
                     <th>GPS coordinates</th>                    
                     <th>Status</th>
-                    <th colspan="3"></th>
+                    <th colspan="2"></th>
                    
                 </tr>
                 </thead>
@@ -35,9 +35,8 @@
                     <td><%= region_master.capital %></td>
                     <td><%= region_master.capital_gps %></td>
                     <td><% if region_master.active_status%>Active<% else %>Inactive<%end%></td>
-                    <td><%= link_to 'Show', region_master, class:"btn btn-sm btn-default" %></td>
-                    <td><%= link_to 'Edit', edit_region_master_path(region_master), class:"btn btn-sm btn-default" %></td>
-                    <td><%= link_to 'Destroy', region_master, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-default" %></td>
+                    <td><%= link_to 'Edit', edit_region_master_path(region_master), class:"btn btn-sm btn-light" %></td>
+                    <td><%= link_to 'Destroy', region_master, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" %></td>
                 </tr>
                 <% end %>
                 </tbody>

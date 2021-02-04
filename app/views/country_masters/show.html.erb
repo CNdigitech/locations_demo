@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Continent code:</strong>
+  <%= @country_master.continent_code %>
+</p>
+
+<p>
+  <strong>Assigned code:</strong>
+  <%= @country_master.assigned_code %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @country_master.name %>
+</p>
+
+<p>
+  <strong>Active status:</strong>
+  <%= @country_master.active_status %>
+</p>
+
+<p>
+  <strong>Del status:</strong>
+  <%= @country_master.del_status %>
+</p>
+
+<%= link_to 'Edit', edit_country_master_path(@country_master) %> |
+<%= link_to 'Back', country_masters_path %>

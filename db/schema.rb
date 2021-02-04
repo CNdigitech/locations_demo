@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_03_000710) do
+ActiveRecord::Schema.define(version: 2021_02_03_195337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "country_masters", force: :cascade do |t|
+    t.string "continent_code"
+    t.string "assigned_code"
+    t.string "name"
+    t.boolean "active_status"
+    t.boolean "del_status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "district_masters", force: :cascade do |t|
     t.string "district_id"
@@ -24,6 +34,8 @@ ActiveRecord::Schema.define(version: 2021_02_03_000710) do
     t.string "capital_gps"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "active_status", default: true
+    t.boolean "del_status", default: false
   end
 
   create_table "district_type_masters", force: :cascade do |t|
@@ -41,6 +53,9 @@ ActiveRecord::Schema.define(version: 2021_02_03_000710) do
     t.string "capital_gps"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "del_status", default: false
+    t.boolean "active_status", default: true
+    t.string "country_code"
   end
 
   create_table "regions", force: :cascade do |t|
@@ -58,6 +73,8 @@ ActiveRecord::Schema.define(version: 2021_02_03_000710) do
     t.string "town_center_gps"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "del_status", default: false
+    t.boolean "active_status", default: true
   end
 
   create_table "users", force: :cascade do |t|

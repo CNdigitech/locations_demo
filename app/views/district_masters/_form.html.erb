@@ -5,7 +5,7 @@
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
     <div class="form-inputs">
-      <%= f.input :district_id %>     
+      <%#= f.input :district_id %>    
       <%# <%= f.collection_select :region_id, @regions, :region_id,:name , label:"Region"%>
       <%= f.input :region_id, collection: @regions, label_method: :name, value_method: :region_id, label:"Region"  %>
       <%= f.input :district_type, collection: @district_types, label_method: :name, value_method: :assigned_code,label:"District type" %>
@@ -16,7 +16,9 @@
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit %>
+      <%= f.button :submit, class:"btn btn-md btn-primary" %>
+      <%= link_to 'Back', district_masters_path, class:"btn btn-md btn-outline-dark" %>
+
     </div>
   <% end %>
 </div>

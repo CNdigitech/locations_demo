@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :country_masters
   resources :town_masters
   resources :district_masters
   resources :district_type_masters
