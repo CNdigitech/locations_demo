@@ -3,7 +3,7 @@ class RegionMastersController < ApplicationController
 
   # GET /region_masters or /region_masters.json
   def index
-    @region_masters = RegionMaster.all
+    @region_masters = RegionMaster.all.order(created_at: :desc)
   end
 
   # GET /region_masters/1 or /region_masters/1.json
@@ -28,7 +28,7 @@ class RegionMastersController < ApplicationController
     @region_master = RegionMaster.new(region_master_params)
     c_code = @region_master.country_code
     prefix = @region_master.name
-    @region_master.region_code = prefix[0..3].downcase
+    @region_master.region_code = RegionMaster.get_special_code(prefix)
     @region_master.region_id = RegionMaster.gen_assigned_code(c_code,prefix)
 
     respond_to do |format|
