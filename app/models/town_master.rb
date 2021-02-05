@@ -5,6 +5,8 @@ class TownMaster < ApplicationRecord
     # belongs_to :a_currency, class_name: "Currency", foreign_key: :currency
     # has_many :banner_deets, class_name:"BannerDetail", foreign_key: :entity_id
 
+    # validates :name, presence: true, uniqueness: true
+
     def self.gen_assigned_code(param)
         sql = "select nextval('town_seq')"
         val = ActiveRecord::Base.connection.execute(sql)
@@ -15,4 +17,6 @@ class TownMaster < ApplicationRecord
         logger.info "===== assigned CODE = #{val}"
         val
     end
+
+
 end

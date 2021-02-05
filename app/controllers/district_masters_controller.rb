@@ -30,6 +30,9 @@ class DistrictMastersController < ApplicationController
     # @district_master.region_code = prefix[0..3].downcase
     @district_master.district_id = DistrictMaster.gen_assigned_code(prefix)
 
+    @regions = RegionMaster.all
+    @district_types = DistrictTypeMaster.all
+    
     respond_to do |format|
       if @district_master.save
         format.html { redirect_to @district_master, notice: "District master was successfully created." }
@@ -44,6 +47,9 @@ class DistrictMastersController < ApplicationController
 
   # PATCH/PUT /district_masters/1 or /district_masters/1.json
   def update
+    @regions = RegionMaster.all
+    @district_types = DistrictTypeMaster.all
+
     respond_to do |format|
       if @district_master.update(district_master_params)
         format.html { redirect_to @district_master, notice: "District master was successfully updated." }

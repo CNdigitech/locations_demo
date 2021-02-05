@@ -13,7 +13,7 @@ class CountryMastersController < ApplicationController
   # GET /country_masters/new
   def new
     @country_master = CountryMaster.new
-    @continents = [["Africa","AF"],["America","AM"],["Asia","AS"],["Australia","AU"],["Europe","EU"]]
+    @continents = [["Africa","Africa"],["America","America"],["Asia","Asia"],["Australia","Australia"],["Europe","Europe"]]
   end
 
   # GET /country_masters/1/edit
@@ -23,6 +23,8 @@ class CountryMastersController < ApplicationController
 
   # POST /country_masters or /country_masters.json
   def create
+    @continents = [["Africa","Africa"],["America","America"],["Asia","Asia"],["Australia","Australia"],["Europe","Europe"]]
+
     @country_master = CountryMaster.new(country_master_params)
     c_name = @country_master.name
     @country_master.assigned_code = c_name[0..1].upcase
@@ -40,6 +42,8 @@ class CountryMastersController < ApplicationController
 
   # PATCH/PUT /country_masters/1 or /country_masters/1.json
   def update
+    @continents = [["Africa","Africa"],["America","America"],["Asia","Asia"],["Australia","Australia"],["Europe","Europe"]]
+
     respond_to do |format|
       if @country_master.update(country_master_params)
         format.html { redirect_to @country_master, notice: "Country master was successfully updated." }

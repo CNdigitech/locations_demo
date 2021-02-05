@@ -6,7 +6,8 @@
 
     <div class="form-inputs">
       <%#= f.input :region_id %>
-      <%= f.input :country_code, collection: @countries, label_method: :name, value_method: :assigned_code, label:"Country"  %>
+      <%#= f.input :country_code, collection: @countries, label_method: :name, value_method: :name, label:"Country"  %>
+      <%= f.input :country_code,as: :country, label:"Country"  %>
       <%= f.input :name %>
       <%= f.input :capital %>
       <%= f.input :capital_gps %>

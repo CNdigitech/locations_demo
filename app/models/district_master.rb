@@ -2,6 +2,7 @@ class DistrictMaster < ApplicationRecord
     self.primary_key = 'district_id'
     has_many :town_masters
     # belongs_to :region_master
+    # validates :name, presence: true, uniqueness: true
 
     def self.gen_assigned_code(param)
         sql = "select nextval('district_seq')"

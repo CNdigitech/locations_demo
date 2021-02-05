@@ -23,6 +23,8 @@ class RegionMastersController < ApplicationController
 
   # POST /region_masters or /region_masters.json
   def create
+    @countries = CountryMaster.all
+
     @region_master = RegionMaster.new(region_master_params)
     c_code = @region_master.country_code
     prefix = @region_master.name
@@ -42,6 +44,8 @@ class RegionMastersController < ApplicationController
 
   # PATCH/PUT /region_masters/1 or /region_masters/1.json
   def update
+    @countries = CountryMaster.all
+
     respond_to do |format|
       if @region_master.update(region_master_params)
         format.html { redirect_to @region_master, notice: "Region master was successfully updated." }

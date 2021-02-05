@@ -23,17 +23,30 @@ class TownMastersController < ApplicationController
     logger.info "Displaying region id from form ==== #{region_id.inspect}"
     district = DistrictMaster.where(region_id: region_id)
     @district_select = district.map{|a|[a.name, a.district_id]}.insert(0,"")
+    logger.info "I am here and this is what I carry : #{@district_select.inspect}"
   end
 
   # GET /town_masters/1/edit
   def edit
+    @regions = RegionMaster.all
+    @districts = DistrictMaster.all
+
+    @town = TownMaster.where("town_id = ? AND active_status = true",@town_master).first
+    district_id = @town.district_id
+    @district = DistrictMaster.where("district_id = ? AND active_status = true",district_id).first
+    region_id = @district.region_id
+    @region = RegionMaster.where("region_id = ? AND active_status = true",region_id).first
   end
 
   # POST /town_masters or /town_masters.json
   def create
+    @regions = RegionMaster.all
+    @districts = DistrictMaster.all
+
     @town_master = TownMaster.new(town_master_params)
     prefix = @town_master.name
     @town_master.town_id = TownMaster.gen_assigned_code(prefix)
+    town_idd = @town_master.town_id
 
     respond_to do |format|
       if @town_master.save
@@ -49,6 +62,9 @@ class TownMastersController < ApplicationController
 
   # PATCH/PUT /town_masters/1 or /town_masters/1.json
   def update
+    @regions = RegionMaster.all
+    @districts = DistrictMaster.all
+    
     respond_to do |format|
       if @town_master.update(town_master_params)
         format.html { redirect_to @town_master, notice: "Town master was successfully updated." }
