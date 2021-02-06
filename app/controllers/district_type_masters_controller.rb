@@ -1,8 +1,10 @@
 class DistrictTypeMastersController < ApplicationController
   before_action :set_district_type_master, only: %i[ show edit update destroy ]
+  # include AssignedCodeGenerator
 
   # GET /district_type_masters or /district_type_masters.json
   def index
+    # AssignedCodeGenerator
     @district_type_masters = DistrictTypeMaster.all
   end
 

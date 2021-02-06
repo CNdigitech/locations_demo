@@ -10,6 +10,11 @@ module AssignedCodeGenerator
         logger.info "Region assigned CODE = #{val}"
         return val
     end
+
+    def test_action
+        logger.info "Tihs module works"
+    end
+
       
     #   def check_seq_code(param)
     #     assigned_code = loop do
