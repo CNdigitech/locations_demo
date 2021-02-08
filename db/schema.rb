@@ -10,19 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_03_195337) do
+ActiveRecord::Schema.define(version: 2021_02_08_182109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "constituencies", force: :cascade do |t|
+    t.string "constituency_id"
+    t.string "district_id"
+    t.string "name"
+    t.string "ec_constituency_code"
+    t.integer "registered_voters"
+    t.boolean "active_status"
+    t.boolean "del_status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "country_masters", force: :cascade do |t|
     t.string "continent_code"
     t.string "assigned_code"
     t.string "name"
-    t.boolean "active_status"
-    t.boolean "del_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "del_status", default: false
+    t.boolean "active_status", default: true
   end
 
   create_table "district_masters", force: :cascade do |t|
