@@ -1,4 +1,6 @@
 class Constituency < ApplicationRecord
+    self.primary_key = 'constituency_id'
+    belongs_to :district_master, class_name:"DistrictMaster", foreign_key: :district_id
     attr_accessor :region_id
     validates :name, presence: true, uniqueness: true
     validates :ec_constituency_code, presence: true, uniqueness: true

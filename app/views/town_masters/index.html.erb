@@ -29,7 +29,7 @@
                 <tr>
                     <td><%= index+1 %></td>
                     <td><%= town_master.town_id %></td>
-                    <td><%= town_master.district_id %></td>
+                    <td><%= town_master.district_master.name %></td>
                     <td><%= town_master.name %></td>
                     <td><%= town_master.town_center_gps %></td>
                     <td><% if town_master.active_status%>Active<% else %>Inactive<%end%></td>

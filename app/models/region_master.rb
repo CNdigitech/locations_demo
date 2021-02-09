@@ -1,6 +1,6 @@
 class RegionMaster < ApplicationRecord
     self.primary_key = 'region_id'
-    has_many :district_masters
+    has_many :district_masters, class_name:"DistrictMaster",primary_key: :region_id, foreign_key: :region_id
     # validates :name, presence: true, uniqueness: true
 
     def self.check_similar_name(code)

@@ -59,6 +59,8 @@ class ConstituenciesController < ApplicationController
 
   # PATCH/PUT /constituencies/1 or /constituencies/1.json
   def update
+    @regions = RegionMaster.all
+    @districts = DistrictMaster.all
     respond_to do |format|
       if @constituency.update(constituency_params)
         format.html { redirect_to @constituency, notice: "Constituency was successfully updated." }

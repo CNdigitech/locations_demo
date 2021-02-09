@@ -1,6 +1,7 @@
 class RegionMastersController < ApplicationController
   before_action :set_region_master, only: %i[ show edit update destroy ]
 
+  require 'assigned_code_generator'
   # GET /region_masters or /region_masters.json
   def index
     @region_masters = RegionMaster.all.order(created_at: :desc)
@@ -23,6 +24,7 @@ class RegionMastersController < ApplicationController
 
   # POST /region_masters or /region_masters.json
   def create
+    gen_code = 
     @countries = CountryMaster.all
 
     @region_master = RegionMaster.new(region_master_params)

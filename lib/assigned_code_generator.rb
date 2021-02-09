@@ -1,19 +1,21 @@
 module AssignedCodeGenerator
-    
-    def gen_assigned_code(sequence, param)
+
+    def self.gen_assigned_code(sequence, param)
         sql = "select nextval('#{sequence}')"
         val = ActiveRecord::Base.connection.execute(sql)
         val = val.values[0][0]
         val = val.to_s.rjust(4,'0')
         code = param[0..2].upcase
         val = code+val
-        logger.info "Region assigned CODE = #{val}"
+        logger.info "Assigned CODE = #{val}"
         return val
     end
 
     def test_action
         logger.info "Tihs module works"
     end
+
+
 
       
     #   def check_seq_code(param)
