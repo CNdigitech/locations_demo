@@ -1,0 +1,64 @@
+<div class="my-form col-lg-6 ">
+  
+  <%= simple_form_for(@polling_station_agent) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-inputs">
+      <div class="row">
+          <div class="col-lg-6">
+            <%#= f.input :agent_id %>
+            <%= f.input :title, collection: @titles, label_method: :first, value_method: :last, input_html:{id:"title"}, label:"Title" %>
+            <%= f.input :firstname %>
+            <%= f.input :lastname %>
+            <%= f.input :gender_id, collection: @genders, label_method: :first, value_method: :last, input_html:{id:"gender"}, label:"Gender" %>
+            <%= f.input :political_party_id, collection: @parties, label_method: :name, value_method: :political_party_id, input_html:{id:"party"}, label:"Political Party" %>
+            <%= f.input :region_id, collection: @regions, label_method: :name, value_method: :region_id, input_html:{id:"pa_region"}, label:"Region"  %>
+            <%= f.input :constituency_id, collection: @constituencies, label_method: :name, value_method: :constituency_id, input_html:{id:"pa_constituency"}, label:"Constituency"  %>
+            <%= f.input :polling_station_id, collection: @polling_stations, label_method: :name, value_method: :polling_station_id, input_html:{id:"poll_station"}, label:"Polling Station"  %>
+           
+          </div>
+          <div class="col-lg-6">
+            <%= f.input :agent_photo %>
+            <%= f.input :agent_signature_image %>
+            <%= f.input :phone_number %>
+            <%= f.input :email_address %>
+            <%= f.input :hq_address_line_1 %>
+            <%= f.input :hq_address_line_2 %>
+            <%= f.input :city %>
+            <%= f.input :town_id, collection: @towns, label_method: :name, value_method: :town_id, input_html:{id:"pa_town"}, label:"Town"  %>
+            <%= f.input :gps_coordinates %>
+            <%= f.input :nearest_landmark %>
+            <%= f.input :user_id, input_html:{value: current_user.id}, as: :hidden %>
+          </div>
+        </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, class:"btn btn-md btn-primary" %>
+      <%= link_to 'Back', polling_station_agents_path, class:"btn btn-md btn-outline-dark"%>
+    </div>
+  <% end %>
+</div>
+
+
+<script>
+  var region_id = $('#pa_region');
+
+  region_id.change(function() {
+      console.log("For region id:: " + region_id.val());
+      // $('[data-toggle="tooltip"]').tooltip();
+
+      $.ajax({
+          type: "POST",
+          url: '<%= region_constituency_pa_path %>',
+          data: {
+              region_id: region_id.val()
+          },
+          dataType: "script"
+          // return false
+      });
+
+  });
+
+</script>

@@ -1,0 +1,2 @@
+class PollingStationMaster < ApplicationRecord
+end

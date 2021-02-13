@@ -1,0 +1,55 @@
+
+   
+    <div class="my-content"> 
+        <div id="address"></div>
+        <h2> Political Party </h2>
+        <div class="new-btn float-right">
+            <%= link_to new_political_party_master_path, class:"btn btn-outline-dark" do %>
+                <span class="glyphicon glyphicon-plus"></span>
+                New Political Party
+            <% end %>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark">
+                <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>Region</th>
+                <th>District</th>
+                <th>Town</th>
+                <th>Name</th>
+                <th>Party initial</th>
+                <th>Party logo</th>
+                <th>Image path</th>
+            
+                
+                <th colspan="3"></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <% @political_party_masters.each_with_index do |political_party_master, index| %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= political_party_master.political_party_id %></td>
+                        <td><%= political_party_master.region_id %></td>
+                        <td><%= political_party_master.district_id %></td>
+                        <td><%= political_party_master.town_id %></td>
+                        <td><%= political_party_master.name %></td>
+                        <td><%= political_party_master.party_initial %></td>
+                        <td>
+                            <% if political_party_master.party_logo.attached? %>
+                                <img src="<%= (url_for(political_party_master.party_logo))%>" width="70" height="70">
+                            <% end %>
+                        </td>
+                        <td><%= link_to 'Address', political_party_master, class:"btn btn-sm btn-primary", remote: true %></td>
+                        <td><%= link_to 'Edit', edit_political_party_master_path(political_party_master), class:"btn btn-sm btn-outline-dark" %></td>
+                        <td><%= link_to 'Delete', political_party_master, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" %></td>
+                    </tr>
+                <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>

@@ -1,0 +1,2 @@
+module ElectionEventMastersHelper
+end

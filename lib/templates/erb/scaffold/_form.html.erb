@@ -1,4 +1,4 @@
-<div class="my-form col-lg-6 col-lg-offset-3">
+<div class="my-form col-lg-6 ">
   <%# frozen_string_literal: true %>
   <%%= simple_form_for(@<%= singular_table_name %>) do |f| %>
     <%%= f.error_notification %>
@@ -11,7 +11,8 @@
     </div>
 
     <div class="form-actions">
-      <%%= f.button :submit %>
+      <%%= f.button :submit, class:"btn btn-md btn-primary" %>
+      <%%= link_to 'Back', <%= plural_table_name %>_path, class:"btn btn-md btn-outline-dark"%>
     </div>
   <%% end %>
 </div>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Assigned code:</strong>
+  <%= @election_event_location.assigned_code %>
+</p>
+
+<p>
+  <strong>Election event:</strong>
+  <%= @election_event_location.election_event_id %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @election_event_location.region_id %>
+</p>
+
+<p>
+  <strong>Constituency:</strong>
+  <%= @election_event_location.constituency_id %>
+</p>
+
+<%= link_to 'Edit', edit_election_event_location_path(@election_event_location) %> |
+<%= link_to 'Back', election_event_locations_path %>

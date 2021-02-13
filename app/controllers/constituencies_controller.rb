@@ -22,8 +22,8 @@ class ConstituenciesController < ApplicationController
   # GET /constituencies/new
   def new
     @constituency = Constituency.new
-    @regions = RegionMaster.all
-    @districts = DistrictMaster.where("id = ?",0)
+    @regions = RegionMaster.where("active_status=true")
+    @districts = DistrictMaster.where("active_status=true AND id = ?",0)
   end
 
   # GET /constituencies/1/edit

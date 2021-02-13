@@ -5,7 +5,7 @@
         <div class="new-btn float-right">
             <%%= link_to new_<%= singular_table_name %>_path, class:"btn btn-outline-dark" do %>
                 <span class="glyphicon glyphicon-plus"></span>
-                New 
+                New <%= singular_table_name %>
             <%% end %>
         </div>
 
@@ -27,8 +27,7 @@
                         <td><%%= index + 1 %></td>
                     <% attributes.each do |attribute| -%>
                         <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
-                    <% end -%>
-                        
+                    <% end -%>                        
                         <td><%%= link_to 'Edit', edit_<%= singular_table_name %>_path(<%= singular_table_name %>), class:"btn btn-sm btn-outline-dark" %></td>
                         <td><%%= link_to 'Delete', <%= singular_table_name %>, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" %></td>
                     </tr>

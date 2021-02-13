@@ -1,0 +1,8 @@
+ <%= simple_form_for(@election_event_master) do |f| %>
+    <%= f.simple_fields_for :election_event_locations do |i| %>
+        <%= i.input :election_event_id , as: :hidden,  :input_html =>{value: @election_event_id }%>
+        <%= i.input :region_id, collection: @regions, label_method: :name, value_method: :region_id,:input_html =>{id: "region1"}, label:"Region" %>
+        <%= i.input :district_id, collection: @districts, label_method: :name, value_method: :district_id,:input_html =>{id: "district1"}, label:"District" %>
+        <%= i.input :constituency_id, collection: @constituencies, label_method: :name, value_method: :constituency_id,:input_html =>{id: "constituency1"}, label:"Constituency" %>
+    <% end %>
+<% end %>

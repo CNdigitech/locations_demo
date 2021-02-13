@@ -1,0 +1,42 @@
+<div class="my-form col-lg-6 ">
+  
+  <%= simple_form_for(@election_event_master) do |f| %>
+  <div id="region_modal"></div>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    
+    <div class="form-inputs">
+          <%= f.input :event_name %>
+          <%= f.input :election_date %>
+          <%= f.input :notes %>
+          <%= f.input :ec_election_reference %>
+          <%= f.input :election_type, collection: @election_types, label_method: :first, value_method: :last,input_html:{id:"types"},label:"Election type" %>
+          <%= f.input :user_id, input_html:{value: current_user.id}, as: :hidden %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, class:"btn btn-md btn-primary", id:"gen_submit"%>
+      <%= link_to 'Select polling station', event_region_modal_path, class:"btn btn-md btn-primary d-none", id:"location_select", remote:true%> 
+      <%= link_to 'Back', election_event_masters_path, class:"btn btn-md btn-outline-dark"%>
+    </div>
+  <% end %>
+</div>
+
+
+<script>
+  $(document).ready(function() {
+
+    $("#types").change(function() {
+      var type_val = $("#types").val();
+      console.log("it works =="+type_val)
+      if ( $("#types").val() == "BYE"){
+         $("#location_select").removeClass("d-none");
+         $("#gen_submit").addClass("d-none");
+      }else if ($("#types").val() == "GEN"){
+        console.log("We are back")
+         $("#gen_submit").removeClass("d-none");
+         $("#location_select").addClass("d-none");
+      };
+    });
+  });
+</script>

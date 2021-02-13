@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_08_182109) do
+ActiveRecord::Schema.define(version: 2021_02_12_090125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "constituencies", force: :cascade do |t|
     t.string "constituency_id"
@@ -21,10 +42,10 @@ ActiveRecord::Schema.define(version: 2021_02_08_182109) do
     t.string "name"
     t.string "ec_constituency_code"
     t.integer "registered_voters"
-    t.boolean "active_status"
-    t.boolean "del_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "active_status", default: true
+    t.boolean "del_status", default: false
   end
 
   create_table "country_masters", force: :cascade do |t|
@@ -53,6 +74,95 @@ ActiveRecord::Schema.define(version: 2021_02_08_182109) do
   create_table "district_type_masters", force: :cascade do |t|
     t.string "assigned_code"
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "election_event_locations", force: :cascade do |t|
+    t.string "assigned_code"
+    t.string "election_event_id"
+    t.string "region_id"
+    t.datetime "constituency_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "election_event_masters", force: :cascade do |t|
+    t.string "election_event_id"
+    t.string "event_name"
+    t.string "election_type"
+    t.datetime "election_date"
+    t.text "notes"
+    t.string "ec_election_reference"
+    t.boolean "active_status"
+    t.boolean "del_status"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "political_party_masters", force: :cascade do |t|
+    t.string "political_party_id"
+    t.string "region_id"
+    t.string "name"
+    t.string "party_initial"
+    t.string "contact_number"
+    t.string "email_address"
+    t.string "party_logo"
+    t.string "image_path"
+    t.string "hq_address_line_1"
+    t.string "hq_address_line_2"
+    t.string "district_id"
+    t.string "town_id"
+    t.string "gps_coordinates"
+    t.boolean "active_status"
+    t.boolean "del_status"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "city"
+  end
+
+  create_table "polling_station_agents", force: :cascade do |t|
+    t.string "agent_id"
+    t.string "political_party_id"
+    t.string "region_id"
+    t.string "constituency_id"
+    t.string "polling_station_id"
+    t.string "title"
+    t.string "firstname"
+    t.string "lastname"
+    t.string "gender_id"
+    t.string "agent_photo"
+    t.string "image_path"
+    t.string "agent_signature_image"
+    t.string "phone_number"
+    t.string "email_address"
+    t.string "hq_address_line_1"
+    t.string "hq_address_line_2"
+    t.string "city"
+    t.string "town_id"
+    t.string "gps_coordinates"
+    t.string "nearest_landmark"
+    t.boolean "active_status"
+    t.boolean "del_status"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "polling_station_masters", force: :cascade do |t|
+    t.string "polling_station_id"
+    t.string "region_id"
+    t.string "constituency_id"
+    t.string "name"
+    t.string "ec_polling_station_code"
+    t.string "polling_station_gps"
+    t.boolean "constituency_collation_center"
+    t.integer "registered_voters"
+    t.boolean "active_status"
+    t.boolean "del_status"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -102,4 +212,5 @@ ActiveRecord::Schema.define(version: 2021_02_08_182109) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
 end

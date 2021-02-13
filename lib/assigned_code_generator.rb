@@ -4,10 +4,9 @@ module AssignedCodeGenerator
         sql = "select nextval('#{sequence}')"
         val = ActiveRecord::Base.connection.execute(sql)
         val = val.values[0][0]
-        val = val.to_s.rjust(4,'0')
+        val = val.to_s.rjust(3,'0')
         code = param[0..2].upcase
         val = code+val
-        logger.info "Assigned CODE = #{val}"
         return val
     end
 

@@ -1,0 +1,33 @@
+<div id="ps_address_form" class="w3-modal w3-animate-opacity" style="display: block"> 
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Region Selection</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span onclick="document.getElementById('ps_address_form').style.display='none'"
+                    >&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">               
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <tbody>
+                            <tr>
+                                <th>Contact number</th>
+                                <td><%= @polling_station_master.name %></td>
+                            </tr>
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span onclick="document.getElementById('ps_address_form').style.display='none'"
+                    class="btn btn-md btn-secondary btn-block" >Close</span>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  polling_station_id: MyString
+  region_id: MyString
+  constituency_id: MyString
+  name: MyString
+  ec_polling_station_code: MyString
+  polling_station_gps: MyString
+  constituency_collation_center: false
+  registered_voters: 1
+  active_status: false
+  del_status_boolean: MyString
+  user_id: 1
+
+two:
+  polling_station_id: MyString
+  region_id: MyString
+  constituency_id: MyString
+  name: MyString
+  ec_polling_station_code: MyString
+  polling_station_gps: MyString
+  constituency_collation_center: false
+  registered_voters: 1
+  active_status: false
+  del_status_boolean: MyString
+  user_id: 1
