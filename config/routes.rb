@@ -19,11 +19,11 @@ Rails.application.routes.draw do
   post 'region_district_con' => 'constituencies#region_district_con', as: :region_district_con
   post 'region_district_pp' => 'political_party_masters#region_district_pp', as: :region_district_pp
   post 'district_town_pp' => 'political_party_masters#district_town_pp', as: :district_town_pp
-  post 'event_region_data' => 'election_event_masters#event_region_data', as: :event_region_data
   post 'region_constituency_ps' => 'polling_station_masters#region_constituency_ps', as: :region_constituency_ps
   post 'region_constituency_pa' => 'polling_station_agents#region_constituency_pa', as: :region_constituency_pa
   # ===============================================================================================
 
+  # post 'event_region_data' => 'election_event_masters#event_region_data', as: :event_region_data
   get 'event_region_modal' => 'election_event_masters#event_region_modal', as: :event_region_modal
   get 'event_district_modal' => 'election_event_masters#event_district_modal', as: :event_district_modal
   get 'event_constituency_modal' => 'election_event_masters#event_constituency_modal', as: :event_constituency_modal

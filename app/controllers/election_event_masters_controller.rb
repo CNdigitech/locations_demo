@@ -6,6 +6,37 @@ class ElectionEventMastersController < ApplicationController
     @election_event_masters = ElectionEventMaster.all
   end
 
+  def event_region_data
+    region_id = params[:region_id]
+    @regions = RegionMaster.where("active_status=true")
+    logger.info "THE REGION ID are === '#{region_id.inspect}'"
+    respond_to do |format|
+      format.js
+      render 'event_district_modal'
+    end
+  end
+
+  def event_region_modal
+    @regions = RegionMaster.where("active_status=true")
+  end
+
+  def event_district_modal
+    region_ids = params[:region_id]
+    logger.info "THE REGION ID are === '#{region_ids.inspect}'"
+    @districts = []
+    region_ids.each  do |region|
+      @districts << DistrictMaster.where("region_id = ?", region)
+    end
+    # region_ids.each  do |region|
+    #   sql = "select * from district_masters where region_id = '#{region}' and active_status = true;"
+    #   val = ActiveRecord::Base.connection.execute(sql)
+    #   val = val.values
+    #   @districts << val
+    # end
+    @districts = @districts.to_a
+    logger.info "THE DISTRICTS are === '#{@districts.inspect}'"
+  end
+
   # GET /election_event_masters/1 or /election_event_masters/1.json
   def show
   end
@@ -18,14 +49,6 @@ class ElectionEventMastersController < ApplicationController
     @regions = RegionMaster.where("active_status=true")
     @districts = DistrictMaster.where("active_status=true AND id = ?",0)
     @constituencies = Constituency.where("active_status=true AND id = ?",0)
-  end
-
-  def event_region_data
-
-  end
-
-  def event_region_modal
-    @regions = RegionMaster.where("active_status=true")
   end
 
   # GET /election_event_masters/1/edit

@@ -11,6 +11,7 @@
           <%= f.input :region_id, collection: @regions, label_method: :name, value_method: :region_id,:input_html =>{id: "pp_region"}, label:"Region"  %>
           <%= f.input :district_id, collection: @districts, label_method: :name, value_method: :district_id,:input_html =>{id: "pp_district"}, label:"District"  %>
           <%= f.input :town_id, collection: @towns, label_method: :name, value_method: :town_id,:input_html =>{id: "pp_town"}, label:"Town"  %>
+          <%= f.input :nearest_landmark %>
         </div>
         <div class="col-lg-6">
           <%= f.input :party_logo %>
