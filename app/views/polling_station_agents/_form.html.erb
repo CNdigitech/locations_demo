@@ -26,7 +26,8 @@
             <%= f.input :hq_address_line_1 %>
             <%= f.input :hq_address_line_2 %>
             <%= f.input :city %>
-            <%= f.input :town_id, collection: @towns, label_method: :name, value_method: :town_id, input_html:{id:"pa_town"}, label:"Town"  %>
+            <%= f.input :town_id %>
+            <%#= f.input :town_id, collection: @towns, label_method: :name, value_method: :town_id, input_html:{id:"pa_town"}, label:"Town"  %>
             <%= f.input :gps_coordinates %>
             <%= f.input :nearest_landmark %>
             <%= f.input :user_id, input_html:{value: current_user.id}, as: :hidden %>
