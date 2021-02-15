@@ -20,21 +20,15 @@ class ElectionEventMastersController < ApplicationController
     @regions = RegionMaster.where("active_status=true")
   end
 
-  def event_district_modal
-    region_ids = params[:region_id]
-    logger.info "THE REGION ID are === '#{region_ids.inspect}'"
-    @districts = []
-    region_ids.each  do |region|
-      @districts << DistrictMaster.where("region_id = ?", region)
-    end
-    # region_ids.each  do |region|
-    #   sql = "select * from district_masters where region_id = '#{region}' and active_status = true;"
-    #   val = ActiveRecord::Base.connection.execute(sql)
-    #   val = val.values
-    #   @districts << val
-    # end
-    @districts = @districts.to_a
-    logger.info "THE DISTRICTS are === '#{@districts.inspect}'"
+  def event_constituency_modal
+    @region_ids = params[:region_id]
+    logger.info "THE CONSTITUENCY IDs are === '#{@region_ids.inspect}'"
+  end
+
+  def event_poll_station_modal
+    @election_event_master = ElectionEventMaster.new
+    @constituency_ids = params[:constituency_id]
+    logger.info "THE POLLING STATION IDs are === '#{@constituency_ids.inspect}'"
   end
 
   # GET /election_event_masters/1 or /election_event_masters/1.json

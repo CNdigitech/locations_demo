@@ -67,6 +67,6 @@ class ElectionEventLocationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def election_event_location_params
-      params.require(:election_event_location).permit(:assigned_code, :election_event_id, :region_id, :district_id, :constituency_id)
+      params.require(:election_event_location).permit(:assigned_code, :election_event_id, :region_id, :district_id, :constituency_id, :polling_station_id)
     end
 end

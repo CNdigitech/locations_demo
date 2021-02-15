@@ -3,6 +3,7 @@
   <%= simple_form_for(@election_event_master) do |f| %>
   <div id="region_modal"></div>
   <div id="district_modal"></div>
+  <div id="con_modal"></div>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
     

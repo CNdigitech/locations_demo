@@ -1,6 +1,6 @@
 <div id="region_form" class="w3-modal w3-animate-opacity" style="display: block">
     
-<%= simple_form_for :region_data , :url => event_district_modal_path, :method => :get, html:{autocomplete:'off'} do |f| %>
+<%= simple_form_for :region_data , :url => event_constituency_modal_path, :method => :get, html:{autocomplete:'off'} do |f| %>
     <%= f.input :region_id, label: false do  %>
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
@@ -64,7 +64,7 @@
   <script>
 
        $( "#region-data" ).click(function() {
-        var url = "<%= event_district_modal_url %>";
+        var url = "<%= event_constituency_modal_url %>";
         // var regions = [$("input[type=checkbox][name='region_data[region_id]']").val()];
 
         var regions =  $("#find-table input:checkbox:checked").map(function(){

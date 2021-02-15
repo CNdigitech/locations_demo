@@ -34,7 +34,7 @@ class ConstituenciesController < ApplicationController
     @constituency = Constituency.where("constituency_id = ? AND active_status = true",@constituency).first
     district_id = @constituency.district_id
     @district = DistrictMaster.where("district_id = ? AND active_status = true",district_id).first
-    region_id = @district.region_id
+    region_id = @constituency.region_id
     @region = RegionMaster.where("region_id = ? AND active_status = true",region_id).first
   end
 
@@ -89,6 +89,6 @@ class ConstituenciesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def constituency_params
-      params.require(:constituency).permit(:region_id,:constituency_id, :district_id, :name, :ec_constituency_code, :registered_voters, :active_status, :del_status)
+      params.require(:constituency).permit(:region_id, :constituency_id, :district_id, :name, :ec_constituency_code, :registered_voters, :active_status, :del_status)
     end
 end

@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   # post 'event_region_data' => 'election_event_masters#event_region_data', as: :event_region_data
   get 'event_region_modal' => 'election_event_masters#event_region_modal', as: :event_region_modal
-  get 'event_district_modal' => 'election_event_masters#event_district_modal', as: :event_district_modal
   get 'event_constituency_modal' => 'election_event_masters#event_constituency_modal', as: :event_constituency_modal
+  get 'event_poll_station_modal' => 'election_event_masters#event_poll_station_modal', as: :event_poll_station_modal
 
 end
