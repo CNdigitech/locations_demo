@@ -87,6 +87,17 @@ class PoliticalPartyMastersController < ApplicationController
     end
   end
 
+  def delete_image_attachment
+    @party_logo = ActiveStorage::Attachment.find_by(id: params[:id])
+    @party_logo&.purge
+    # @party_logo = ActiveStorage::Blob.find_signed(params[:id])
+    logger.info "THE IMAGE = '#{@party_logo.inspect}"
+    # @party_logo.purge
+    logger.info "================================"
+    redirect_to political_party_masters_path, notice: "Upload was successfully removed."
+  end
+  
+
   # DELETE /political_party_masters/1 or /political_party_masters/1.json
   def destroy
     @political_party_master.destroy

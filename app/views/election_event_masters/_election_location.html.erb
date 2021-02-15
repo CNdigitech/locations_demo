@@ -6,3 +6,103 @@
         <%= i.input :constituency_id, collection: @constituencies, label_method: :name, value_method: :constituency_id,:input_html =>{id: "constituency1"}, label:"Constituency" %>
     <% end %>
 <% end %>
+
+<div id="poll_station_form" class="w3-modal w3-animate-opacity" style="display: block">
+    
+ <%= simple_form_for(@election_event_master) do |f| %>
+    <%= f.simple_fields_for :election_event_locations do |i| %>
+        <%= i.input :polling_station_id, label: false do  %>
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">District Selection</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span onclick="document.getElementById('poll_station_form').style.display='none'"
+                        >&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">               
+                    <table class="table table-striped table-condensed table-hover " id="con-table">
+                        <thead class="w3-black">
+                            <tr>
+                                <th>Polling Station</th>
+                                <th> Select</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% @constituency_ids.each do |constituency| %>
+                                <% @polling_stations = PollingStationMaster.where("constituency_id = ? AND active_status = true",constituency)%>
+                                <% logger.info " Polling Station value === '#{@polling_stations.inspect}' "%>
+                                <% @polling_stations.each_with_index  do |station,index| %>
+                                    <tr>
+                                        <td><%= station.name %></td>
+                                        <td>
+                                            <label>
+                                            <input name="election_event_locations[polling_station_id]" type="checkbox"  value="<%= station.polling_station_id %>" />
+                                            <span> </span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                <% end %>
+                            <% end %>
+                        </tbody>
+                    </table>
+                    <input type="hidden" name="val" value="status"/>
+
+                </div>
+                <div class="modal-footer">
+                    <span onclick="document.getElementById('poll_station_form').style.display='none'"
+                    class="btn btn-md btn-secondary" >Back</span>
+                    <%# <button class=" btn btn-md btn-primary" id="polling-data">Submit</button> %>
+                    <%= i.button :submit, class:"btn btn-md btn-primary", id:"poll_submit"%>
+
+
+                </div>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+<% end %>
+
+ 
+</div>
+
+
+
+ <style>
+    .bottom-btn{
+      margin-top: 5%;
+      /*margin-left: 55%;*/
+    }
+  </style>
+
+
+  <script>
+
+       $( "#polling-data" ).click(function() {
+        var url = "<%= event_poll_station_modal_url %>";
+        // var regions = [$("input[type=checkbox][name='region_data[region_id]']").val()];
+
+        var polling_station =  $("#con-table input:checkbox:checked").map(function(){
+                            return $(this).val();
+                        }).get();
+        console.log("we are here with polling station ids = "+polling_station);
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: 'script',
+            data: {
+                polling_station_id: polling_station
+            }, // serializes the form's elements.
+            success: function(data)
+            {
+                // $("#event_region_modal").html(data);
+                // alert("success")
+            }
+        });
+        return false;
+
+    });
+
+  </script>

@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   resources :election_event_masters
   resources :polling_station_agents
   resources :polling_station_masters
-  resources :political_party_masters
+  resources :political_party_masters do
+    member do
+      delete :delete_image_attachment
+    end
+  end
   resources :constituencies
   resources :country_masters
   resources :town_masters

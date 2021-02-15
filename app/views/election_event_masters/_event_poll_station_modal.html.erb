@@ -1,12 +1,12 @@
 <div id="poll_station_form" class="w3-modal w3-animate-opacity" style="display: block">
     
- <%= simple_form_for(@election_event_master) do |f| %>
-    <%= f.simple_fields_for :election_event_locations do |i| %>
+ <%#= simple_form_for(@election_event_master) do |f| %>
+<%= simple_form_for :polling_station_data , :url => event_poll_station_modal_path, :method => :get, html:{autocomplete:'off'} do |i| %>
         <%= i.input :polling_station_id, label: false do  %>
             <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">District Selection</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Polling Station Selection</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span onclick="document.getElementById('poll_station_form').style.display='none'"
                         >&times;</span>
@@ -29,7 +29,7 @@
                                         <td><%= station.name %></td>
                                         <td>
                                             <label>
-                                            <input name="election_event_locations[polling_station_id]" type="checkbox"  value="<%= station.polling_station_id %>" />
+                                            <input name="polling_station_data[polling_station_id]" type="checkbox"  value="<%= station.polling_station_id %>" />
                                             <span> </span>
                                             </label>
                                         </td>
@@ -44,8 +44,8 @@
                 <div class="modal-footer">
                     <span onclick="document.getElementById('poll_station_form').style.display='none'"
                     class="btn btn-md btn-secondary" >Back</span>
-                    <%# <button class=" btn btn-md btn-primary" id="polling-data">Submit</button> %>
-                    <%= i.button :submit, class:"btn btn-md btn-primary", id:"poll_submit"%>
+                    <button class=" btn btn-md btn-primary" id="poll-data">Submit</button>
+                    <%#= i.button :submit, class:"btn btn-md btn-primary", id:"poll_submit"%>
 
 
                 </div>
@@ -53,7 +53,7 @@
             </div>
         <% end %>
     <% end %>
-<% end %>
+<%# end %>
 
  
 </div>

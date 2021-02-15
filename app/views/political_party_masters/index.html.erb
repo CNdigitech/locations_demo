@@ -42,7 +42,12 @@
                         <td>
                             <% if political_party_master.party_logo.attached? %>
                                 <img src="<%= (url_for(political_party_master.party_logo))%>" width="70" height="70">
+<%# , delete_asset_attachment_resource_url(@political_party_master, asset.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+                                <%= link_to 'x', delete_image_attachment_political_party_master_url(political_party_master.party_logo.signed_id),
+                                            method: :delete,
+                                            data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" %>       
                             <% end %>
+                                             
                         </td>
                         <td><%= link_to 'Address', political_party_master, class:"btn btn-sm btn-primary", remote: true %></td>
                         <td><%= link_to 'Edit', edit_political_party_master_path(political_party_master), class:"btn btn-sm btn-outline-dark" %></td>

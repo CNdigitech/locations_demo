@@ -21,4 +21,9 @@ class PoliticalPartyMaster < ApplicationRecord
         return name
       end
   
+
+    #   if party_logo.attached? && !party_logo.attachment.blob.content_type.in?(%w(image/png image/jpeg))
+    #     party_logo.purge
+    #     errors.add(:party_logo, 'Must be an image file')
+    # end
 end
