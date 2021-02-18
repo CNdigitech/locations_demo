@@ -64,6 +64,7 @@ class PollingStationAgentsController < ApplicationController
         format.html { redirect_to @polling_station_agent, notice: "Polling station agent was successfully created." }
         format.json { render :show, status: :created, location: @polling_station_agent }
       else
+        logger.info "POLLING AGENT ERRORS === #{ @polling_station_agent.errors.messages.inspect}"
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @polling_station_agent.errors, status: :unprocessable_entity }
       end

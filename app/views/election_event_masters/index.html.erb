@@ -8,7 +8,7 @@
                 New Election Event
             <% end %>
         </div>
-
+        <div id="con_modal"></div>
         <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <thead class="thead-dark">
@@ -20,10 +20,10 @@
                                 <th>Election date</th>
                                 <th>Notes</th>
                                 <th>Ec election reference</th>
-                                <th>Active status</th>
+                               <!-- <th>Active status</th>
                                 <th>Del status</th>
-                                <th>User</th>
-                                <th colspan="2"></th>
+                                <th>User</th>-->
+                                <th colspan="3"></th>
                 </tr>
                 </thead>
 
@@ -34,13 +34,13 @@
                                             <td><%= election_event_master.election_event_id %></td>
                                             <td><%= election_event_master.event_name %></td>
                                             <td><%= election_event_master.election_type %></td>
-                                            <td><%= election_event_master.election_date %></td>
+                                            <td><%= election_event_master.election_date.strftime("%Y-%m-%d %T") if !election_event_master.election_date.nil?%></td>
                                             <td><%= election_event_master.notes %></td>
                                             <td><%= election_event_master.ec_election_reference %></td>
-                                            <td><%= election_event_master.active_status %></td>
-                                            <td><%= election_event_master.del_status %></td>
-                                            <td><%= election_event_master.user_id %></td>
-                                            
+                                            <!--<td><%#= election_event_master.active_status %></td>
+                                            <td><%#= election_event_master.del_status %></td>
+                                            <td><%#= election_event_master.user_id %></td>-->
+                        <td><%= link_to 'Polling Station', event_poll_station_modal_path(event_id: election_event_master.election_event_id), class:"btn btn-sm btn-primary", remote: true %></td>
                         <td><%= link_to 'Edit', edit_election_event_master_path(election_event_master), class:"btn btn-sm btn-outline-dark" %></td>
                         <td><%= link_to 'Delete', election_event_master, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" %></td>
                     </tr>

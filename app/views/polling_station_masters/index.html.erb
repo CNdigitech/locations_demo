@@ -34,8 +34,8 @@
                         <td><%= index + 1 %></td>
                         <td><%= polling_station_master.polling_station_id %></td>
                         <td><%= polling_station_master.name %></td>
-                        <td><%= polling_station_master.region_id %></td>
-                        <td><%= polling_station_master.constituency_id %></td>
+                        <td><%= polling_station_master.region.name %></td>
+                        <td><%= polling_station_master.constituency.name %></td>
                         <td><% if polling_station_master.constituency_collation_center %>Yes<%else%>No<%end%></td>
                         <td><%= polling_station_master.ec_polling_station_code %></td>
                         <td><%= polling_station_master.polling_station_gps %></td>

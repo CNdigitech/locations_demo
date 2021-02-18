@@ -2,6 +2,7 @@ class TownMaster < ApplicationRecord
     self.primary_key = 'town_id'
     attr_accessor :region_id
     belongs_to :district_master , class_name:"DistrictMaster", foreign_key: :district_id
+    has_many :political_parties, class_name:"PoliticalPartyMaster",primary_key: :town_id
 
     # validates :name, presence: true, uniqueness: true
 

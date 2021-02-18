@@ -34,16 +34,15 @@
                     <tr>
                         <td><%= index + 1 %></td>
                         <td><%= political_party_master.political_party_id %></td>
-                        <td><%= political_party_master.region_id %></td>
-                        <td><%= political_party_master.district_id %></td>
-                        <td><%= political_party_master.town_id %></td>
+                        <td><%= political_party_master.region.name %></td>
+                        <td><%= political_party_master.district.name %></td>
+                        <td><%= political_party_master.town.name %></td>
                         <td><%= political_party_master.name %></td>
                         <td><%= political_party_master.party_initial %></td>
                         <td>
                             <% if political_party_master.party_logo.attached? %>
                                 <img src="<%= (url_for(political_party_master.party_logo))%>" width="70" height="70">
-<%# , delete_asset_attachment_resource_url(@political_party_master, asset.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-                                <%= link_to 'x', delete_image_attachment_political_party_master_url(political_party_master.party_logo.signed_id),
+                                <%#= link_to 'x', delete_image_attachment_political_party_master_url(political_party_master.party_logo.signed_id),
                                             method: :delete,
                                             data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" %>       
                             <% end %>

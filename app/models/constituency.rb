@@ -1,6 +1,7 @@
 class Constituency < ApplicationRecord
     self.primary_key = 'constituency_id'
     belongs_to :district_master, class_name:"DistrictMaster", foreign_key: :district_id
+    has_many :polling_stations, class_name:"PollingStationMaster", primary_key: :constituency_id, foreign_key: :constituency_id 
     
     validates :name, presence: true, uniqueness: true
     validates :ec_constituency_code, presence: true, uniqueness: true

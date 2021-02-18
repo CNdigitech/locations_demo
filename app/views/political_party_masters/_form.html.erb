@@ -16,6 +16,9 @@
         </div>
         <div class="col-lg-6">
           <%= f.input :party_logo %>
+            <%#= link_to 'x', delete_image_attachment_political_party_master_url(political_party_master.party_logo.signed_id),
+                                            method: :delete,
+                                            data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" %>     
           <%= f.input :contact_number %>
           <%= f.input :email_address %>
           <%= f.input :hq_address_line_1 %>

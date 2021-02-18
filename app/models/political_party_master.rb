@@ -1,5 +1,10 @@
 class PoliticalPartyMaster < ApplicationRecord
     has_one_attached :party_logo
+    belongs_to :region, class_name:"RegionMaster",foreign_key: :region_id
+    belongs_to :district, class_name:"DistrictMaster",foreign_key: :district_id
+    belongs_to :town, class_name:"TownMaster",foreign_key: :town_id
+    # has_many :polling_agents,class_name:"PollingStationAgent",primary_key: :political_party_id,foreign_key: :political_party_id
+    
     def self.get_special_code(name)
         name_arr = name.split(" ")
         logger.info "===== ARRAY VALUES ===== #{name_arr.inspect}"

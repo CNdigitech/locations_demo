@@ -22,7 +22,8 @@
                         </thead>
                         <tbody>
                             <% @constituency_ids.each do |constituency| %>
-                                <% @polling_stations = PollingStationMaster.where("constituency_id = ? AND active_status = true",constituency)%>
+                                <% con_id = constituency.constituency_id%>
+                                <% @polling_stations = PollingStationMaster.where("constituency_id = ? AND active_status = true",con_id)%>
                                 <% logger.info " Polling Station value === '#{@polling_stations.inspect}' "%>
                                 <% @polling_stations.each_with_index  do |station,index| %>
                                     <tr>
