@@ -31,12 +31,15 @@
 
                 <tbody>
                 <% @political_party_masters.each_with_index do |political_party_master, index| %>
+                    <% region = RegionMaster.where("region_id = ?",political_party_master.region_id)[0]%>
+                    <% district = DistrictMaster.where("district_id = ?",political_party_master.district_id)[0]%>
+                    <% town = TownMaster.where("town_id = ?",political_party_master.town_id)[0]%>
                     <tr>
                         <td><%= index + 1 %></td>
                         <td><%= political_party_master.political_party_id %></td>
-                        <td><%= political_party_master.region.name %></td>
-                        <td><%= political_party_master.district.name %></td>
-                        <td><%= political_party_master.town.name %></td>
+                        <td><%= region.name if !region.nil?%></td>
+                        <td><%= district.name if !district.nil? %></td>
+                        <td><%= town.name if !town.nil? %></td>
                         <td><%= political_party_master.name %></td>
                         <td><%= political_party_master.party_initial %></td>
                         <td>
