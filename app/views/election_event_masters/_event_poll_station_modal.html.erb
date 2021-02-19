@@ -17,7 +17,6 @@
                         <thead class="w3-black">
                             <tr>
                                 <th>Polling Station</th>
-                                <th> Select</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -28,12 +27,6 @@
                                 <% @polling_stations.each_with_index  do |station,index| %>
                                     <tr>
                                         <td><%= station.name %></td>
-                                        <td>
-                                            <label>
-                                            <input name="polling_station_data[polling_station_id]" type="checkbox"  value="<%= station.polling_station_id %>" />
-                                            <span> </span>
-                                            </label>
-                                        </td>
                                     </tr>
                                 <% end %>
                             <% end %>
@@ -44,8 +37,8 @@
                 </div>
                 <div class="modal-footer">
                     <span onclick="document.getElementById('poll_station_form').style.display='none'"
-                    class="btn btn-md btn-secondary" >Back</span>
-                    <button class=" btn btn-md btn-primary" id="poll-data">Submit</button>
+                    class="btn btn-md btn-secondary btn-block" >Close</span>
+                   
                     <%#= i.button :submit, class:"btn btn-md btn-primary", id:"poll_submit"%>
 
 

@@ -16,6 +16,7 @@
           <%= f.input :ec_election_reference %>
           <%= f.input :election_type, collection: @election_types, label_method: :first, value_method: :last,input_html:{id:"types"},label:"Election type" %>
           <%= f.input :user_id, input_html:{value: current_user.id}, as: :hidden %>
+           <input type="hidden" name="constituency_ids[constituency_id][]" value="[]"/>
     </div>
     <%= render 'event_region_modal', :f => f %>
     <div class="form-actions">

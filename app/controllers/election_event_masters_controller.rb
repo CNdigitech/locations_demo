@@ -58,7 +58,7 @@ class ElectionEventMastersController < ApplicationController
     @election_types = [["General Election","GEN"],["By Election","BYE"]]
     @con = Constituency.where("active_status=true")
     @election_event_master = ElectionEventMaster.new(election_event_master_params)
-  
+    election_type = @election_event_master.election_type
     # region = RegionMaster.where("region_id = ?", @election_event_master.region_id)[0]
     # country_code = region.country_code
     @election_event_master.election_event_id = AssignedCodeGenerator.gen_assigned_code("election_event_seq","ELEC")
@@ -66,20 +66,26 @@ class ElectionEventMastersController < ApplicationController
 
     respond_to do |format|
       if @election_event_master.valid?
-       
-        
-        # {a: 1}.key?(:a)
-        if params.key?("constituency_ids") 
-          logger.info "NOT VALID ============================"
-          logger.info "con ids #{params["constituency_ids"].inspect}"
+        if election_type == "GEN" && params.key?("constituency_ids") 
+          logger.info "General Election ============================"
+          @election_event_master.save
+          @con.each do |a|
+            constituency_id = a.constituency_id
+            logger.info "constituency id values = #{constituency_id.inspect}"
+            @new_election_event_location = ElectionEventLocation.new(election_event_id: @election_event_master.election_event_id,constituency_id: constituency_id)
+            @new_election_event_location.save(validate: false)
+          end
+          
+          format.html { redirect_to @election_event_master, notice: "Election event master was successfully created." }
+          format.json { render :show, status: :created, location: @election_event_master }
+        elsif election_type == "BYE" && params.key?("constituency_ids") 
+          logger.info "By Elections ============================"
           if params["constituency_ids"]["constituency_id"].empty?
-            logger.info "NOT VALID con id id nil ============================"
-
+            logger.info "Constituency id = nil ============================"
             format.html { render :new, status: :unprocessable_entity, notice: "Please select constituencies" }
+            flash.now[:danger]="Please select constituencies"
             format.json { render json: @election_event_master.errors, status: :unprocessable_entity }
           else
-            logger.info "VALID ============================"
-
             @election_event_master.save
             params["constituency_ids"][:constituency_id].each do |a|
               logger.info "constituency values = #{a.inspect}"
@@ -91,16 +97,13 @@ class ElectionEventMastersController < ApplicationController
             format.json { render :show, status: :created, location: @election_event_master }
           end
         else
-          logger.info "NOT VALID conid set not available============================"
-
+          logger.info "NOT VALID ============================"
+          params[:val] == "no_modal"
           format.html { render :new, status: :unprocessable_entity, notice: "Please select constituencies" }
-          flash.now[:danger]="Please select constituencies"
+          flash.now[:danger]="Please select an election type"
           format.json { render json: @election_event_master.errors, status: :unprocessable_entity }
         end
-       
 
-        # format.html { redirect_to @election_event_master, notice: "Election event master was successfully created." }
-        # format.json { render :show, status: :created, location: @election_event_master }
       else
         format.html { render :new, status: :unprocessable_entity, notice: "Please select constituencies" }
         format.json { render json: @election_event_master.errors, status: :unprocessable_entity }
