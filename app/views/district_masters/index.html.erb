@@ -28,10 +28,11 @@
 
                 <tbody>
                 <% @district_masters.each_with_index do |district_master,index| %>
+                <% region = RegionMaster.where("region_id=?",district_master.region_id)[0]%>
                 <tr>
                     <td><%= index + 1 %></td>
                     <td><%= district_master.district_id %></td>
-                    <td><%= district_master.region_master.name %></td>
+                    <td><%= region.name if !region.nil? %></td>
                    <!--<td><%#= district_master.region_master.name if !district_master.region_master.nil?%></td>--> 
                     <td>
                       <% if district_master.district_type == 'MUN' %>
