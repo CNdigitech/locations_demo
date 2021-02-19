@@ -46,11 +46,11 @@
                         </td>
                         <td><%= polling_station_agent.fullname %></td>
                         <td><%= polling_station_agent.agent_id %></td>
-                        <td><%= political_party.name%></td>
+                        <td><%= political_party.name if !political_party.nil?%></td>
                         <!--<td><%#= polling_station_agent.region_id %></td>-->
                         <!--<td><%#= polling_station_agent.constituency_id %></td>-->
                        <!-- <td><%#= polling_station_agent.town_id %></td>-->
-                        <td><%= polling_station.name %></td>
+                        <td><%= polling_station.name if !polling_station.nil?%></td>
                         <td><%= polling_station_agent.gender_id %></td>            
                         <td><%= link_to 'Address', polling_station_agent, class:"btn btn-sm btn-primary", remote: true %></td>
                         <td><%= link_to 'Edit', edit_polling_station_agent_path(polling_station_agent), class:"btn btn-sm btn-outline-dark" %></td>
