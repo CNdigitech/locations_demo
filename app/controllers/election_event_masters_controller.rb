@@ -24,8 +24,11 @@ class ElectionEventMastersController < ApplicationController
   end
 
   def event_constituency_modal
-    @region_ids = params[:region_id]
-    logger.info "THE CONSTITUENCY IDs are === '#{@region_ids.inspect}'"
+    # @region_ids = params[:region_id]
+    @election_location = ElectionEventLocation.where("election_event_id = ?", params[:event_id])
+    @election = ElectionEventMaster.where("election_event_id = ?", params[:event_id])[0]
+    @election_type = @election.election_type
+    # logger.info "THE CONSTITUENCY IDs are === '#{@region_ids.inspect}'"
   end
 
   def event_poll_station_modal

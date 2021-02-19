@@ -9,12 +9,10 @@
     
     <div class="form-inputs">
           <%= f.input :event_name %>
-          <%#= f.input :election_date %>
-          <%= f.input :election_date, :id => "datepicker1", as: :date, html5: true, class:"input-group date", boolean_style: :inline, input_html: {style: "width: 100%", data: {behaviour: 'datepicker', provide: 'datepicker'}, autocomplete: "off"} %>
-
+          <%= f.input :election_type, collection: @election_types, label_method: :first, value_method: :last,input_html:{id:"types"},label:"Election type" %>
           <%= f.input :notes %>
           <%= f.input :ec_election_reference %>
-          <%= f.input :election_type, collection: @election_types, label_method: :first, value_method: :last,input_html:{id:"types"},label:"Election type" %>
+          <%= f.input :election_date, :id => "datepicker1", as: :date, html5: true, class:"input-group date", boolean_style: :inline, input_html: {style: "width: 100%", data: {behaviour: 'datepicker', provide: 'datepicker'}, autocomplete: "off"} %>
           <%= f.input :user_id, input_html:{value: current_user.id}, as: :hidden %>
            <input type="hidden" name="constituency_ids[constituency_id][]" value="[]"/>
     </div>

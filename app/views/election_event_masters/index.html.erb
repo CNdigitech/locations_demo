@@ -46,7 +46,7 @@
                                             <!--<td><%#= election_event_master.active_status %></td>
                                             <td><%#= election_event_master.del_status %></td>
                                             <td><%#= election_event_master.user_id %></td>-->
-                        <td><%= link_to 'Polling Station', event_poll_station_modal_path(event_id: election_event_master.election_event_id), class:"btn btn-sm btn-primary", remote: true %></td>
+                        <td><%= link_to 'Constituency', event_constituency_modal_path(event_id: election_event_master.election_event_id), class:"btn btn-sm btn-primary", remote: true %></td>
                         <td><%= link_to 'Edit', edit_election_event_master_path(election_event_master), class:"btn btn-sm btn-outline-dark" %></td>
                         <td><%= link_to 'Delete', election_event_master, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" %></td>
                     </tr>
