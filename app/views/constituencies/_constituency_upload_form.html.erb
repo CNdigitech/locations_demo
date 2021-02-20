@@ -1,0 +1,58 @@
+<div id="constituency_file_form" class="w3-modal w3-animate-opacity" style="display: block">
+    
+    <%= simple_form_for @constituency,  url:  constituency_bulk_upload_path(@constituency),:html => {:autocomplete => "off", :multipart=> true} do |f| %>
+        <%= f.error_notification %>
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Constituencies</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span onclick="document.getElementById('constituency_file_form').style.display='none'"
+                        >&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">               
+                    <div class = "wrapper">
+                        <p style="font-size: 15px;">Click <b style=" font-size: 15px;"><%= link_to "<i class='fa fa-'> Here </i>".html_safe, constituency_sample_csv_path %></b> to download a sample csv file. Make sure your csv file follows the same format.</p>
+                        <hr/>
+                        <label>Import CSV</label>
+
+                        <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file"  name="constituency[file]" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                            <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                        </div>
+                        <%# <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Button</button>
+                        </div> %>
+                        </div>
+
+
+                        <%# <div class = "file-field input-field">
+                            <div class = "btn w3-indigo">
+                            <span>Select File</span>
+                            <input type = "file" name="constituency[file]"/>
+                            </div>
+
+                            <div class = "file-path-wrapper">
+                            <input class = "file-path validate" type = "text"
+                                    placeholder = "Upload file" />
+                            </div>
+                        </div> %>
+                    </div>
+                    <br>
+                   
+
+                </div>
+                <div class="modal-footer">
+                    <%# <span onclick="document.getElementById('constituency_file_form').style.display='none'"
+                    class="btn btn-md btn-secondary btn-block" >Close</span> %>
+                     <%= f.submit "Submit", class: "btn btn-md btn-primary btn-block" %>
+                    <input type="hidden" name="val" value="status"/>
+                </div>
+                </div>
+            </div>
+    <% end %>
+
+</div>
+

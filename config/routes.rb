@@ -32,4 +32,7 @@ Rails.application.routes.draw do
   get 'event_constituency_modal' => 'election_event_masters#event_constituency_modal', as: :event_constituency_modal
   get 'event_poll_station_modal' => 'election_event_masters#event_poll_station_modal', as: :event_poll_station_modal
 
+  post 'constituency_bulk_upload' => 'constituencies#constituency_bulk_upload', as: :constituency_bulk_upload
+  get 'constituency_upload_form' => 'constituencies#constituency_upload_form', as: :constituency_upload_form 
+  get 'constituency_sample_csv' => 'constituencies#constituency_sample_csv', as: :constituency_sample_csv
 end

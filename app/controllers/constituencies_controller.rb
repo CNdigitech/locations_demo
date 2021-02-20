@@ -1,5 +1,6 @@
 class ConstituenciesController < ApplicationController
   before_action :set_constituency, only: %i[ show edit update destroy ]
+  require 'csv'
 
   # GET /constituencies or /constituencies.json
   def index
@@ -17,6 +18,27 @@ class ConstituenciesController < ApplicationController
 
   # GET /constituencies/1 or /constituencies/1.json
   def show
+  end
+
+  # uploads =====
+  def constituency_sample_csv
+    send_file("#{Rails.root}/public/sample_con_csv.csv", filename: "sample_con_csv.csv", type: "application/csv")
+  end
+
+  def constituency_upload_form
+    @constituency = Constituency.new
+  end
+
+  def constituency_bulk_upload
+    file_path = constituency_params[:file]
+
+    logger.info "THIS IS THE FILE DATA  #{file_path.inspect} "
+    Constituency.bulk_import(file_path)
+
+    respond_to do |format|
+      format.html { redirect_to constituencies_path, notice: 'Constituencies were successfully created.' }
+      format.json { render :show, status: :created, location: @constituency }
+    end
   end
 
   # GET /constituencies/new
@@ -89,6 +111,6 @@ class ConstituenciesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def constituency_params
-      params.require(:constituency).permit(:region_id, :constituency_id, :district_id, :name, :ec_constituency_code, :registered_voters, :active_status, :del_status)
+      params.require(:constituency).permit(:file, :region_id, :constituency_id, :district_id, :name, :ec_constituency_code, :registered_voters, :active_status, :del_status)
     end
 end

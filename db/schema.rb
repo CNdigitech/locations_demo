@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_12_090125) do
+ActiveRecord::Schema.define(version: 2021_02_20_122556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,20 @@ ActiveRecord::Schema.define(version: 2021_02_12_090125) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "active_status", default: true
     t.boolean "del_status", default: false
+    t.string "region_id"
+  end
+
+  create_table "constituency_duplicates", force: :cascade do |t|
+    t.string "constituency_id"
+    t.string "district_id"
+    t.string "name"
+    t.string "ec_constituency_code"
+    t.integer "registered_voters"
+    t.boolean "active_status", default: true
+    t.boolean "del_status", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "region_id"
   end
 
   create_table "country_masters", force: :cascade do |t|
@@ -82,9 +96,10 @@ ActiveRecord::Schema.define(version: 2021_02_12_090125) do
     t.string "assigned_code"
     t.string "election_event_id"
     t.string "region_id"
-    t.datetime "constituency_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "polling_station_id"
+    t.string "constituency_id"
   end
 
   create_table "election_event_masters", force: :cascade do |t|
@@ -94,11 +109,11 @@ ActiveRecord::Schema.define(version: 2021_02_12_090125) do
     t.datetime "election_date"
     t.text "notes"
     t.string "ec_election_reference"
-    t.boolean "active_status"
-    t.boolean "del_status"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "active_status", default: true
+    t.boolean "del_status", default: false
   end
 
   create_table "political_party_masters", force: :cascade do |t|
@@ -115,12 +130,13 @@ ActiveRecord::Schema.define(version: 2021_02_12_090125) do
     t.string "district_id"
     t.string "town_id"
     t.string "gps_coordinates"
-    t.boolean "active_status"
-    t.boolean "del_status"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "city"
+    t.boolean "active_status", default: true
+    t.boolean "del_status", default: false
+    t.string "nearest_landmark"
   end
 
   create_table "polling_station_agents", force: :cascade do |t|
@@ -144,11 +160,11 @@ ActiveRecord::Schema.define(version: 2021_02_12_090125) do
     t.string "town_id"
     t.string "gps_coordinates"
     t.string "nearest_landmark"
-    t.boolean "active_status"
-    t.boolean "del_status"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "del_status", default: false
+    t.boolean "active_status", default: true
   end
 
   create_table "polling_station_masters", force: :cascade do |t|
@@ -160,11 +176,11 @@ ActiveRecord::Schema.define(version: 2021_02_12_090125) do
     t.string "polling_station_gps"
     t.boolean "constituency_collation_center"
     t.integer "registered_voters"
-    t.boolean "active_status"
-    t.boolean "del_status"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "active_status", default: true
+    t.boolean "del_status", default: false
   end
 
   create_table "region_masters", force: :cascade do |t|
