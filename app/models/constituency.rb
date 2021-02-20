@@ -48,7 +48,7 @@ class Constituency < ApplicationRecord
 
     def self.import_validation(id)
         if !id.nil?
-          myObj = Constituency.where("ec_constituency_code=?",id)[0]
+          myObj = Constituency.where("ec_constituency_code =?",id)[0]
           if !myObj.nil?
             return true
           else

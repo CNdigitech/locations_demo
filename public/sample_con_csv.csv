@@ -1,2 +1,2 @@
-region_id   ,constituency_id,district_id,name,ec_constituency_code,registered_voters
-GH-GRE002, ,ABC123,La Kotopon,ec123/123,12333
+constituency_id   ,region_id,district_id,name,ec_constituency_code,registered_voters
+,GH-GRE002,ABC123,La Kotopon,ec123/123,12333
