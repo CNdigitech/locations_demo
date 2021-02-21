@@ -30,14 +30,14 @@
 
                 <tbody>
                 <% @polling_station_masters.each_with_index do |polling_station_master, index| %>
-                    <% region = RegionMaster.where("region_id = ?",polling_station_master.region_id)[0]%>
-                    <% constituency = Constituency.where("constituency_id = ?",polling_station_master.constituency_id)[0]%>
+                    <% @region = RegionMaster.where("region_id = ?",polling_station_master.region_id)[0]%>
+                    <% @constituency = Constituency.where("constituency_id = ?",polling_station_master.constituency_id)[0]%>
                     <tr>
                         <td><%= index + 1 %></td>
                         <td><%= polling_station_master.polling_station_id %></td>
                         <td><%= polling_station_master.name %></td>
-                        <td><%= region.name %></td>
-                        <td><%= constituency.name %></td>
+                        <td><%= @region.name if !@region.nil?%></td>
+                        <td><%= @constituency.name if !@constituency.nil? %></td>
                         <td><% if polling_station_master.constituency_collation_center %>Yes<%else%>No<%end%></td>
                         <td><%= polling_station_master.ec_polling_station_code %></td>
                         <td><%= polling_station_master.polling_station_gps %></td>
