@@ -35,4 +35,7 @@ Rails.application.routes.draw do
   post 'constituency_bulk_upload' => 'constituencies#constituency_bulk_upload', as: :constituency_bulk_upload
   get 'constituency_upload_form' => 'constituencies#constituency_upload_form', as: :constituency_upload_form 
   get 'constituency_sample_csv' => 'constituencies#constituency_sample_csv', as: :constituency_sample_csv
+
+  get 'disable_agent' => 'polling_station_agents#disable_agent', as: :disable_agent
+
 end

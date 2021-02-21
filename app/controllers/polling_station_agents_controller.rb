@@ -1,5 +1,5 @@
 class PollingStationAgentsController < ApplicationController
-  before_action :set_polling_station_agent, only: %i[ show edit update destroy ]
+  before_action :set_polling_station_agent, only: %i[ show edit update destroy disable_agent]
   include AssignedCodeGenerator
   # GET /polling_station_agents or /polling_station_agents.json
   def index
@@ -90,6 +90,25 @@ class PollingStationAgentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to polling_station_agents_url, notice: "Polling station agent was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def disable_agent
+    # @polling_station_agent = PollingStationAgent.find(params[:id])
+    if @polling_station_agent.active_status
+      @polling_station_agent.active_status = false
+      @polling_station_agent.save(validate: false)
+      respond_to do |format|
+        format.html {redirect_to polling_station_agents_url, notice: 'Agent was successfully disabled.' }
+        format.json { head :no_content }
+      end
+    else
+      @polling_station_agent.active_status = true
+      @polling_station_agent.save(validate: false)
+      respond_to do |format|
+        format.html { redirect_to polling_station_agents_url, notice: 'Agent was successfully enabled.' }
+        format.json { head :no_content }
+      end
     end
   end
 

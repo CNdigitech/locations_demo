@@ -1,6 +1,7 @@
 class ConstituenciesController < ApplicationController
   before_action :set_constituency, only: %i[ show edit update destroy ]
   require 'csv'
+  # include DisableNotDelete
 
   # GET /constituencies or /constituencies.json
   def index

@@ -6,10 +6,10 @@
 
     <div class="form-inputs">
       <%#= f.input :town_id %>
-      <%#= f.input :district_id %>
+      <%= f.input :name, label:"Town name" %>
       <%= f.input :region_id, collection: @regions, label_method: :name, value_method: :region_id,:input_html =>{id: "region"}, label:"Region"  %>
       <%= f.input :district_id, collection: @districts, label_method: :name, value_method: :district_id,:input_html =>{id: "district"}, label:"District"  %>
-      <%= f.input :name, label:"Town name" %>
+      
       <%= f.input :town_center_gps %>
     </div>
 
