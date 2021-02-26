@@ -13,6 +13,8 @@ body{
 
 .login-screen{
   background-image: url('/assets/bg2.svg');
+  // asset-url("bg2.svg", image);
+  // url('/assets/bg2.svg');
   background-size: cover;
   object-fit: cover;
   height: 100vh;
