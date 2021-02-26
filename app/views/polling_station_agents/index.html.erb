@@ -2,8 +2,10 @@
    
     <div class="my-content"> 
         <div id="pa_address"></div>
+        <div id="file_up_age"></div>
         <h2> Polling Agents </h2>
         <div class="new-btn float-right">
+            <%= link_to 'bulk upload', agent_upload_form_path,class:"btn btn-outline-primary", remote: true %>
             <%= link_to new_polling_station_agent_path, class:"btn btn-outline-dark" do %>
                 <span class="glyphicon glyphicon-plus"></span>
                 New Polling Agent
@@ -51,7 +53,15 @@
                         <!--<td><%#= polling_station_agent.constituency_id %></td>-->
                        <!-- <td><%#= polling_station_agent.town_id %></td>-->
                         <td><%= polling_station.name if !polling_station.nil?%></td>
-                        <td><%= polling_station_agent.gender_id %></td>            
+                        <td>
+                            <% if polling_station_agent.gender_id == "M"%>
+                                Male
+                            <% elsif polling_station_agent.gender_id == "F"%>
+                                Female
+                            <% elsif polling_station_agent.gender_id == "O"%>
+                                Other
+                            <%end%>
+                        </td>            
                         <td><%= link_to 'Address', polling_station_agent, class:"btn btn-sm btn-primary", remote: true %></td>
                         <td><%= link_to 'Edit', edit_polling_station_agent_path(polling_station_agent), class:"btn btn-sm btn-outline-dark" %></td>
                         <td> 

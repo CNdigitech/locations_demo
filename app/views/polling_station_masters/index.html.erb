@@ -1,9 +1,11 @@
 
    
     <div class="my-content"> 
+        <div id="file_up_sta"></div>
         <div id="ps_address"></div>
         <h2> Polling Stations</h2>
         <div class="new-btn float-right">
+            <%= link_to 'bulk upload', station_upload_form_path,class:"btn btn-outline-primary", remote: true %>
             <%= link_to new_polling_station_master_path, class:"btn btn-outline-dark" do %>
                 <span class="glyphicon glyphicon-plus"></span>
                 New Polling station

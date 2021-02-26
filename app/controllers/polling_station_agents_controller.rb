@@ -1,6 +1,7 @@
 class PollingStationAgentsController < ApplicationController
   before_action :set_polling_station_agent, only: %i[ show edit update destroy disable_agent]
   include AssignedCodeGenerator
+  require 'csv'
   # GET /polling_station_agents or /polling_station_agents.json
   def index
     @polling_station_agents = PollingStationAgent.all
@@ -8,6 +9,27 @@ class PollingStationAgentsController < ApplicationController
 
   # GET /polling_station_agents/1 or /polling_station_agents/1.json
   def show
+  end
+
+   # uploads =====
+  def agent_sample_csv
+    send_file("#{Rails.root}/public/sample_agent_csv.csv", filename: "sample_agent_csv.csv", type: "application/csv")
+  end
+
+  def agent_upload_form
+    @polling_station_agent = PollingStationAgent.new
+  end
+
+  def agent_bulk_upload
+    file_path = polling_station_agent_params[:file]
+
+    logger.info "THIS IS THE FILE DATA  #{file_path.inspect} "
+    PollingStationAgent.bulk_import(file_path)
+
+    respond_to do |format|
+      format.html { redirect_to polling_station_agents_path, notice: 'Polling Agents were successfully created.' }
+      format.json { render :show, status: :created, location: @polling_station_agent }
+    end
   end
 
   #  cascading dropdowns
@@ -120,6 +142,6 @@ class PollingStationAgentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def polling_station_agent_params
-      params.require(:polling_station_agent).permit(:agent_id, :political_party_id, :region_id, :constituency_id, :polling_station_id, :title, :firstname, :lastname, :gender_id, :agent_photo, :image_path, :agent_signature_image, :phone_number, :email_address, :hq_address_line_1, :hq_address_line_2, :city, :town_id, :gps_coordinates, :nearest_landmark, :active_status, :del_status, :user_id)
+      params.require(:polling_station_agent).permit(:file, :agent_id, :political_party_id, :region_id, :constituency_id, :polling_station_id, :title, :firstname, :lastname, :gender_id, :agent_photo, :image_path, :agent_signature_image, :phone_number, :email_address, :hq_address_line_1, :hq_address_line_2, :city, :town_id, :gps_coordinates, :nearest_landmark, :active_status, :del_status, :user_id)
     end
 end

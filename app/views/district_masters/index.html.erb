@@ -2,7 +2,9 @@
    
     <div class="my-content"> 
         <h2> Districts </h2>
+        <div id="file_up_dis"></div>
         <div class="new-btn float-right">
+            <%= link_to 'bulk upload', district_upload_form_path,class:"btn btn-outline-primary", remote: true %>
             <%= link_to new_district_master_path, class:"btn btn-outline-dark" do %>
                 <span class="glyphicon glyphicon-plus"></span>
                 New District

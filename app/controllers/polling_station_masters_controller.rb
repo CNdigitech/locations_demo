@@ -1,6 +1,7 @@
 class PollingStationMastersController < ApplicationController
   before_action :set_polling_station_master, only: %i[ show edit update destroy ]
   include AssignedCodeGenerator
+  require 'csv'
   # GET /polling_station_masters or /polling_station_masters.json
   def index
     @polling_station_masters = PollingStationMaster.all
@@ -18,6 +19,27 @@ class PollingStationMastersController < ApplicationController
     @constituencies = Constituency.where("active_status = true AND id=?",0)
   end
 
+  # uploads =====
+  def station_sample_csv
+    send_file("#{Rails.root}/public/sample_station_csv.csv", filename: "sample_station_csv.csv", type: "application/csv")
+  end
+
+  def station_upload_form
+    @polling_station_master = PollingStationMaster.new
+  end
+
+  def station_bulk_upload
+    file_path = polling_station_master_params[:file]
+
+    logger.info "THIS IS THE FILE DATA  #{file_path.inspect} "
+    PollingStationMaster.bulk_import(file_path)
+
+    respond_to do |format|
+      format.html { redirect_to polling_station_masters_path, notice: 'Polling Stations were successfully created.' }
+      format.json { render :show, status: :created, location: @polling_station_master }
+    end
+  end
+  
   #  cascading dropdowns
   def region_constituency_ps
     region_id = params["region_id"]
@@ -79,6 +101,6 @@ class PollingStationMastersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def polling_station_master_params
-      params.require(:polling_station_master).permit(:polling_station_id, :region_id, :constituency_id, :name, :ec_polling_station_code, :polling_station_gps, :constituency_collation_center, :registered_voters, :active_status, :del_status, :user_id)
+      params.require(:polling_station_master).permit(:file, :polling_station_id, :region_id, :constituency_id, :name, :ec_polling_station_code, :polling_station_gps, :constituency_collation_center, :registered_voters, :active_status, :del_status, :user_id)
     end
 end

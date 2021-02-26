@@ -1,6 +1,6 @@
 class DistrictMastersController < ApplicationController
   before_action :set_district_master, only: %i[ show edit update destroy ]
-
+  require 'csv'
   # GET /district_masters or /district_masters.json
   def index
     @district_masters = DistrictMaster.all
@@ -8,6 +8,27 @@ class DistrictMastersController < ApplicationController
 
   # GET /district_masters/1 or /district_masters/1.json
   def show
+  end
+
+  # uploads =====
+  def district_sample_csv
+    send_file("#{Rails.root}/public/sample_dis_csv.csv", filename: "sample_dis_csv.csv", type: "application/csv")
+  end
+
+  def district_upload_form
+    @district_master = DistrictMaster.new
+  end
+
+  def district_bulk_upload
+    file_path = district_master_params[:file]
+
+    logger.info "THIS IS THE FILE DATA  #{file_path.inspect} "
+    DistrictMaster.bulk_import(file_path)
+
+    respond_to do |format|
+      format.html { redirect_to district_masters_path, notice: 'Districts were successfully created.' }
+      format.json { render :show, status: :created, location: @district_master }
+    end
   end
 
   # GET /district_masters/new
@@ -78,6 +99,6 @@ class DistrictMastersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def district_master_params
-      params.require(:district_master).permit(:district_id, :region_id, :district_type, :name, :capital, :capital_gps, :active_status, :del_status)
+      params.require(:district_master).permit(:file, :district_id, :region_id, :district_type, :name, :capital, :capital_gps, :active_status, :del_status)
     end
 end

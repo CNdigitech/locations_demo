@@ -36,6 +36,18 @@ Rails.application.routes.draw do
   get 'constituency_upload_form' => 'constituencies#constituency_upload_form', as: :constituency_upload_form 
   get 'constituency_sample_csv' => 'constituencies#constituency_sample_csv', as: :constituency_sample_csv
 
+  post 'district_bulk_upload' => 'district_masters#district_bulk_upload', as: :district_bulk_upload
+  get 'district_upload_form' => 'district_masters#district_upload_form', as: :district_upload_form 
+  get 'district_sample_csv' => 'district_masters#district_sample_csv', as: :district_sample_csv
+
+  post 'station_bulk_upload' => 'polling_station_masters#station_bulk_upload', as: :station_bulk_upload
+  get 'station_upload_form' => 'polling_station_masters#station_upload_form', as: :station_upload_form 
+  get 'station_sample_csv' => 'polling_station_masters#station_sample_csv', as: :station_sample_csv
+
+  post 'agent_bulk_upload' => 'polling_station_agents#agent_bulk_upload', as: :agent_bulk_upload
+  get 'agent_upload_form' => 'polling_station_agents#agent_upload_form', as: :agent_upload_form 
+  get 'agent_sample_csv' => 'polling_station_agents#agent_sample_csv', as: :agent_sample_csv
+
   get 'disable_agent' => 'polling_station_agents#disable_agent', as: :disable_agent
 
 end
