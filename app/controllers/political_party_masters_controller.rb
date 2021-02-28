@@ -1,5 +1,5 @@
 class PoliticalPartyMastersController < ApplicationController
-  before_action :set_political_party_master, only: %i[ show edit update destroy ]
+  before_action :set_political_party_master, only: %i[ show edit update destroy disable_party]
   require 'mini_magick'
   include AssignedCodeGenerator
   # GET /political_party_masters or /political_party_masters.json
@@ -104,6 +104,26 @@ class PoliticalPartyMastersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to political_party_masters_url, notice: "Political party master was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  
+  def disable_party
+    # @polling_station_agent = PollingStationAgent.find(params[:id])
+    if @political_party_master.active_status
+      @political_party_master.active_status = false
+      @political_party_master.save(validate: false)
+      respond_to do |format|
+        format.html {redirect_to political_party_masters_url, notice: 'The party was successfully disabled.' }
+        format.json { head :no_content }
+      end
+    else
+      @political_party_master.active_status = true
+      @political_party_master.save(validate: false)
+      respond_to do |format|
+        format.html { redirect_to political_party_masters_url, notice: 'The party was successfully enabled.' }
+        format.json { head :no_content }
+      end
     end
   end
 

@@ -49,5 +49,7 @@ Rails.application.routes.draw do
   get 'agent_sample_csv' => 'polling_station_agents#agent_sample_csv', as: :agent_sample_csv
 
   get 'disable_agent' => 'polling_station_agents#disable_agent', as: :disable_agent
+  get 'disable_party' => 'political_party_masters#disable_party', as: :disable_party
+  get 'disable_station' => 'polling_station_masters#disable_station', as: :disable_station
 
 end

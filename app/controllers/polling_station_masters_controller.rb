@@ -1,5 +1,5 @@
 class PollingStationMastersController < ApplicationController
-  before_action :set_polling_station_master, only: %i[ show edit update destroy ]
+  before_action :set_polling_station_master, only: %i[ show edit update destroy disable_station]
   include AssignedCodeGenerator
   require 'csv'
   # GET /polling_station_masters or /polling_station_masters.json
@@ -90,6 +90,26 @@ class PollingStationMastersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to polling_station_masters_url, notice: "Polling station master was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def disable_station
+    # @polling_station_agent = PollingStationAgent.find(params[:id])
+    logger.info "polling station === #{@polling_station_master.inspect}"
+    if @polling_station_master.active_status
+      @polling_station_master.active_status = false
+      @polling_station_master.save(validate: false)
+      respond_to do |format|
+        format.html {redirect_to polling_station_masters_url, notice: 'Polling station was successfully disabled.' }
+        format.json { head :no_content }
+      end
+    else
+      @polling_station_master.active_status = true
+      @polling_station_master.save(validate: false)
+      respond_to do |format|
+        format.html { redirect_to polling_station_masters_url, notice: 'Polling station was successfully enabled.' }
+        format.json { head :no_content }
+      end
     end
   end
 

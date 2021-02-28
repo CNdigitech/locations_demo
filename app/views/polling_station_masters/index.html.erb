@@ -26,7 +26,7 @@
                 <th>Polling station gps</th>
                 
                 <th>Registered voters</th>
-                <th colspan="2"></th>
+                <th colspan="3"></th>
                 </tr>
                 </thead>
 
@@ -47,7 +47,18 @@
                         <td><%= polling_station_master.registered_voters %></td>
                       <!--<td><%#= link_to 'Address', polling_station_master, class:"btn btn-sm btn-primary", remote: true %></td>-->
                         <td><%= link_to 'Edit', edit_polling_station_master_path(polling_station_master), class:"btn btn-sm btn-outline-dark" %></td>
-                        <td><%= link_to 'Delete', polling_station_master, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" %></td>
+                        <td> 
+                            <% if polling_station_master.active_status %>
+                                <%= link_to 'Disable', disable_station_path(id: polling_station_master), data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-outline-danger" %>
+                            <% else %>
+                                <%= link_to 'Enable', disable_station_path(id: polling_station_master), data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-dark" %>
+                            <% end %>
+                        </td>
+                        <td>
+                            <%= link_to polling_station_master, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" do %>
+                                <i class="fa fa-trash"></i>
+                            <%end%>
+                        </td>     
                     </tr>
                 <% end %>
                 </tbody>

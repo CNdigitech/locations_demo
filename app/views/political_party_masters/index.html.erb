@@ -53,7 +53,18 @@
                         </td>
                         <td><%= link_to 'Address', political_party_master, class:"btn btn-sm btn-primary", remote: true %></td>
                         <td><%= link_to 'Edit', edit_political_party_master_path(political_party_master), class:"btn btn-sm btn-outline-dark" %></td>
-                        <td><%= link_to 'Delete', political_party_master, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" %></td>
+                        <td> 
+                            <% if political_party_master.active_status %>
+                                <%= link_to 'Disable', disable_party_path(id: political_party_master), data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-outline-danger" %>
+                            <% else %>
+                                <%= link_to 'Enable', disable_party_path(id: political_party_master), data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-dark" %>
+                            <% end %>
+                        </td>
+                        <td>
+                            <%= link_to political_party_master, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" do %>
+                                <i class="fa fa-trash"></i>
+                            <%end%>
+                        </td>                    
                     </tr>
                 <% end %>
                 </tbody>
