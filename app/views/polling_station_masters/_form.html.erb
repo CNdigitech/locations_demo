@@ -6,12 +6,12 @@
 
     <div class="form-inputs">
       <%= f.input :name, label:"Polling Station"%>
+      <%= f.input :registered_voters %>
       <%= f.input :region_id, collection: @regions, label_method: :name, value_method: :region_id,:input_html =>{id: "ps_region"}, label:"Region"  %>
       <%= f.input :constituency_id, collection: @constituencies, label_method: :name, value_method: :constituency_id,:input_html =>{id: "ps_constituency"}, label:"Constituency"  %>
+      <%= f.input :constituency_collation_center, label:"Is this polling station a constituency collation center?" %>
       <%= f.input :ec_polling_station_code %>
       <%= f.input :polling_station_gps %>
-      <%= f.input :registered_voters %>
-      <%= f.input :constituency_collation_center, label:"Is this polling station a constituency collation center?" %>
       <%= f.input :user_id, input_html:{value: current_user.id}, as: :hidden %>
     </div>
 

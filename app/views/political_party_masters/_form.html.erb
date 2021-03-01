@@ -12,6 +12,7 @@
           <%= f.input :district_id, collection: @districts, label_method: :name, value_method: :district_id,:input_html =>{id: "pp_district"}, label:"District"  %>
           <%#= f.input :town_id, collection: @towns, label_method: :name, value_method: :town_id,:input_html =>{id: "pp_town"}, label:"Town"  %>
           <%= f.input :town_id %>
+          <%= f.input :party_initial, input_html:{value: "#{@party_initial}"}, as: :hidden %>
           <%= f.input :nearest_landmark %>
         </div>
         <div class="col-lg-6">

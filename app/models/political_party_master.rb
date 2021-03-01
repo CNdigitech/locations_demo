@@ -22,7 +22,7 @@ class PoliticalPartyMaster < ApplicationRecord
           name = name.upcase
         end
         # name = check_similar_name(name)
-        logger.info "===== REGION CODE ===== #{name}"
+        logger.info "===== PARTY INITIALS ===== #{name}"
         return name
       end
   

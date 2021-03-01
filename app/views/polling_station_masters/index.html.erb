@@ -19,13 +19,14 @@
                 <th>#</th>
                 <th>Code</th>
                 <th>Name</th>
-                <th>Region</th>
+                <th>Registered voters</th>
                 <th>Constituency</th>
+                <th>Region</th>
                 <th>Collation center</th>
                 <th>EC polling station code</th>
                 <th>Polling station gps</th>
                 
-                <th>Registered voters</th>
+                
                 <th colspan="3"></th>
                 </tr>
                 </thead>
@@ -38,13 +39,14 @@
                         <td><%= index + 1 %></td>
                         <td><%= polling_station_master.polling_station_id %></td>
                         <td><%= polling_station_master.name %></td>
-                        <td><%= @region.name if !@region.nil?%></td>
+                        <td><%= polling_station_master.registered_voters %></td>
                         <td><%= @constituency.name if !@constituency.nil? %></td>
+                        <td><%= @region.name if !@region.nil?%></td>
                         <td><% if polling_station_master.constituency_collation_center %>Yes<%else%>No<%end%></td>
                         <td><%= polling_station_master.ec_polling_station_code %></td>
                         <td><%= polling_station_master.polling_station_gps %></td>
                         
-                        <td><%= polling_station_master.registered_voters %></td>
+                        
                       <!--<td><%#= link_to 'Address', polling_station_master, class:"btn btn-sm btn-primary", remote: true %></td>-->
                         <td><%= link_to 'Edit', edit_polling_station_master_path(polling_station_master), class:"btn btn-sm btn-outline-dark" %></td>
                         <td> 

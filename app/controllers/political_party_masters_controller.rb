@@ -42,6 +42,9 @@ class PoliticalPartyMastersController < ApplicationController
     @regions = RegionMaster.where(active_status: true)
     @districts = DistrictMaster.where(active_status: true)
     @towns = TownMaster.where(active_status: true)
+    @party_initial = PoliticalPartyMaster.get_special_code(@political_party_master.name)
+    logger.info "partyinitial === #{@party_initial.inspect}"
+
   end
 
   # POST /political_party_masters or /political_party_masters.json
@@ -76,8 +79,12 @@ class PoliticalPartyMastersController < ApplicationController
 
   # PATCH/PUT /political_party_masters/1 or /political_party_masters/1.json
   def update
+
     respond_to do |format|
-      if @political_party_master.update(political_party_master_params)
+      if @political_party_master.valid?
+        @political_party_master.party_initial = PoliticalPartyMaster.get_special_code(political_party_master_params[:name])
+        logger.info "party === #{ political_party_master_params[:party_initial].inspect}"
+        @political_party_master.update(political_party_master_params)
         format.html { redirect_to @political_party_master, notice: "Political party master was successfully updated." }
         format.json { render :show, status: :ok, location: @political_party_master }
       else

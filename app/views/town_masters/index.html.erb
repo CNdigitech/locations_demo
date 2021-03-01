@@ -14,9 +14,9 @@
                 <thead class="thead-dark">
                 <tr>
                     <th>#</th>
-                    <th>Town</th>
-                    <th>District</th>
+                    <th>Code</th>
                     <th>Name</th>
+                    <th>District</th>
                     <th>Town center GPS</th>
                     <th>Status</th>
                     <th></th>
@@ -29,8 +29,8 @@
                 <tr>
                     <td><%= index+1 %></td>
                     <td><%= town_master.town_id %></td>
-                    <td><%= town_master.district_master.name %></td>
                     <td><%= town_master.name %></td>
+                    <td><%= town_master.district_master.name %></td>
                     <td><%= town_master.town_center_gps %></td>
                     <td><% if town_master.active_status%>Active<% else %>Inactive<%end%></td>
                     <td><%= link_to 'Edit', edit_town_master_path(town_master), class:"btn btn-sm btn-outline-dark" %></td>
