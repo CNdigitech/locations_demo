@@ -79,18 +79,14 @@ test:
 #   DATABASE_URL="postgres://myuser:mypass@localhost/somedatabase"
 #
 # You can use this database configuration with:
-
-  production:
-    url: <%= ENV['DATABASE_URL'] %>
+production:
+  url: <%= ENV['DATABASE_URL'] %>
 #
 # production:
 #   <<: *default
-  # database: dfbnuurggi5h52
-  # username: yefofnuybbxseg
-  # password: 3b75833b712c5b4c26962136063a362968f8be33282d5bd6b4b5f46811da49fa
-  # port: 5432
-  # host: ec2-54-90-13-87.compute-1.amazonaws.com
-  # database: fred_demo_production
-  # username: fred_demo
-  # password: <%= ENV['FRED_DEMO_DATABASE_PASSWORD'] %>
+#   port: 5432
+#   host: ec2-54-90-13-87.compute-1.amazonaws.com
+#   database: fred_demo_production
+#   username: fred_demo
+#   password: 3b75833b712c5b4c26962136063a362968f8be33282d5bd6b4b5f46811da49fa
 
