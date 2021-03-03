@@ -1,4 +1,4 @@
-FROM ruby:2.7.1
+FROM timbru31/ruby-node:latest
 
 
 RUN mkdir -p /usr/src/app
@@ -22,4 +22,5 @@ RUN bundle exec rake db:migrate
 RUN bundle exec rake assets:precompile --trace
 
 EXPOSE 3000
-CMD ["rails", "server", "-b", "0.0.0.0"]
+#CMD ["rails", "server", "-b", "0.0.0.0", "--port", "3001"]
+CMD ["bundle", "exec", "rails", "s"]
