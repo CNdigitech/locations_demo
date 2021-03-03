@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y nodejs postgresql-client sqlite3 vim --
 ENV RAILS_ENV test
 ENV RAILS_SERVE_STATIC_FILES true
 ENV RAILS_LOG_TO_STDOUT true
-ENV DATABASE_URL "postgres://postgres:bC8CProtaRc41se@cnts.c5ef3k1a8u1g.us-east-1.rds.amazonaws.com/cnts"
+ENV DATABASE_URL "postgres://postgres:bC8CProtaRc41se@cnts-test.c5ef3k1a8u1g.us-east-1.rds.amazonaws.com/cnts-test"
 
 COPY Gemfile /usr/src/app/
 COPY Gemfile.lock /usr/src/app/
