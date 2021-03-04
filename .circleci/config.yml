@@ -1,0 +1,78 @@
+version: 2.1
+orbs:
+  aws-ecr: circleci/aws-ecr@6.15.3
+  aws-ecs: circleci/aws-ecs@2.0.0
+
+workflows:
+  build-and-deploy:
+    jobs:
+      - aws-ecr/build-and-push-image:
+          name: deploy-image-to-ecr-development
+          filters:
+            branches:
+              only:
+                - development
+          repo: "cnts-development"
+          tag: "latest"
+          
+      - aws-ecr/build-and-push-image:
+          name: deploy-image-to-ecr-test
+          filters:
+            branches:
+              only:
+                - test
+          repo: "cnts-test"
+          tag: "latest"
+          
+      - aws-ecr/build-and-push-image:
+          name: deploy-image-to-ecr-production
+          filters:
+            branches:
+              only:
+                - master
+          repo: "cnts-production"
+          tag: "latest"
+          
+      - aws-ecs/deploy-service-update:
+          name: deploy-to-development-env
+          requires:
+            - deploy-image-to-ecr-development
+          filters:
+            branches:
+              only:
+                - development
+          family: "cnts-development-task-definition"
+          cluster-name: "cnts-cluster"
+          service-name: "cnts-core-service-development"
+          #container-image-name-updates: "container=cnts-container,image-and-tag=${AWS_ECR_ACCOUNT_URL}/cnts-development:$(echo $CIRCLE_SHA1 | cut -c -7)"
+          skip-task-definition-registration: true
+          force-new-deployment: true
+          
+      - aws-ecs/deploy-service-update:
+          name: deploy-to-test-env
+          requires:
+            - deploy-image-to-ecr-test
+          filters:
+            branches:
+              only:
+                - test
+          family: "cnts-test-task-definition"
+          cluster-name: "cnts-cluster"
+          service-name: "cnts-core-service-test"
+          #container-image-name-updates: "container=cnts-container,image-and-tag=${AWS_ECR_ACCOUNT_URL}/cnts-test:$(echo $CIRCLE_SHA1 | cut -c -7)"
+          skip-task-definition-registration: true
+          force-new-deployment: true
+      - aws-ecs/deploy-service-update:
+          name: deploy-to-production-env
+          requires:
+            - deploy-image-to-ecr-production
+          filters:
+            branches:
+              only:
+                - master
+          family: "cnts-production-task-definition"
+          cluster-name: "cnts-cluster"
+          service-name: "cnts-core-service-production"
+          #container-image-name-updates: "container=cnts-container,image-and-tag=${AWS_ECR_ACCOUNT_URL}/cnts-production:$(echo $CIRCLE_SHA1 | cut -c -7)"
+          skip-task-definition-registration: true
+          force-new-deployment: true
