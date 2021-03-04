@@ -15,7 +15,7 @@ COPY Gemfile /usr/src/app/
 COPY Gemfile.lock /usr/src/app/
 RUN gem install bundler -v 2.1.4
 RUN bundle config --global frozen 1
-RUN bundle install --without development test
+RUN bundle install --without development production
 
 COPY . /usr/src/app
 RUN bundle exec rake db:migrate
