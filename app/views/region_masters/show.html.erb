@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @region_master.region_id %>
+</p>
+
+<p>
+  <strong>Region code:</strong>
+  <%= @region_master.region_code %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @region_master.name %>
+</p>
+
+<p>
+  <strong>Capital:</strong>
+  <%= @region_master.capital %>
+</p>
+
+<p>
+  <strong>Capital gps:</strong>
+  <%= @region_master.capital_gps %>
+</p>
+
+<%= link_to 'Edit', edit_region_master_path(@region_master) %> |
+<%= link_to 'Back', region_masters_path %>

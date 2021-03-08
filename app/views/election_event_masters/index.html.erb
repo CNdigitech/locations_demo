@@ -1,0 +1,57 @@
+
+   
+    <div class="my-content"> 
+        <h2> Election Events </h2>
+        <div class="new-btn float-right">
+            <%= link_to new_election_event_master_path, class:"btn btn-outline-dark" do %>
+                <span class="glyphicon glyphicon-plus"></span>
+                New Election Event
+            <% end %>
+        </div>
+        <div id="con_modal"></div>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark">
+                <tr>
+                <th>#</th>
+                                <th>Event ID</th>
+                                <th>Event name</th>
+                                <th>Election type</th>
+                                <th>Election date</th>
+                                <th>Notes</th>
+                                <th>Ec election reference</th>
+                               <!-- <th>Active status</th>
+                                <th>Del status</th>
+                                <th>User</th>-->
+                                <th colspan="3"></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <% @election_event_masters.each_with_index do |election_event_master, index| %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                                            <td><%= election_event_master.election_event_id %></td>
+                                            <td><%= election_event_master.event_name %></td>
+                                            <td>
+                                                <% if election_event_master.election_type == "GEN" %>
+                                                    General
+                                                <%elsif election_event_master.election_type == "BYE"%>
+                                                    By election
+                                                <% end %>
+                                            </td>
+                                            <td><%= election_event_master.election_date.strftime("%Y-%m-%d") if !election_event_master.election_date.nil?%></td>
+                                            <td><%= election_event_master.notes %></td>
+                                            <td><%= election_event_master.ec_election_reference %></td>
+                                            <!--<td><%#= election_event_master.active_status %></td>
+                                            <td><%#= election_event_master.del_status %></td>
+                                            <td><%#= election_event_master.user_id %></td>-->
+                        <td><%= link_to 'Constituency', event_constituency_modal_path(event_id: election_event_master.election_event_id), class:"btn btn-sm btn-primary", remote: true %></td>
+                        <td><%= link_to 'Edit', edit_election_event_master_path(election_event_master), class:"btn btn-sm btn-outline-dark" %></td>
+                        <td><%= link_to 'Delete', election_event_master, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" %></td>
+                    </tr>
+                <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>

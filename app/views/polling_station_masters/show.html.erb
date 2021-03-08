@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Polling station:</strong>
+  <%= @polling_station_master.polling_station_id %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @polling_station_master.region_id %>
+</p>
+
+<p>
+  <strong>Constituency:</strong>
+  <%= @polling_station_master.constituency_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @polling_station_master.name %>
+</p>
+
+<p>
+  <strong>Ec polling station code:</strong>
+  <%= @polling_station_master.ec_polling_station_code %>
+</p>
+
+<p>
+  <strong>Polling station gps:</strong>
+  <%= @polling_station_master.polling_station_gps %>
+</p>
+
+<p>
+  <strong>Constituency collation center:</strong>
+  <%= @polling_station_master.constituency_collation_center %>
+</p>
+
+<p>
+  <strong>Registered voters:</strong>
+  <%= @polling_station_master.registered_voters %>
+</p>
+
+<p>
+  <strong>Active status:</strong>
+  <%= @polling_station_master.active_status %>
+</p>
+
+<p>
+  <strong>Del status boolean:</strong>
+  <%= @polling_station_master.del_status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @polling_station_master.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_polling_station_master_path(@polling_station_master) %> |
+<%= link_to 'Back', polling_station_masters_path %>

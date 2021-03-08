@@ -1,0 +1,47 @@
+<div class="login-screen col-12">
+  <div class=" login-text col-7 float-left">
+    <div class="row">
+      
+    </div>
+  </div>
+  <div class="login-form-space col-5 float-right">
+    <div class="row buffer">
+    
+    </div>
+    <div class=" login-form-card ">
+      <h2><b>Log in</b></h2>
+      <% if devise_error_messages? || alert %>
+          <div class="row">
+            <div id="alert_message" class=" alert alert-danger"  id="flash">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <%= devise_error_messages! %>
+              <%= alert %>
+            </div>
+          </div>
+      <% end %>
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-inputs">
+          <%= f.input :login, label:"Username/Email" %>
+          <%= f.input :password,
+                      required: false,
+                      input_html: { autocomplete: "current-password" } %>
+          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Log in", class:"btn btn-md btn-primary " %>
+        </div>
+      <% end %>
+      <br>
+      <%= render "devise/shared/links" %>
+    </div>
+    <div class="row buffer">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

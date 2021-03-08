@@ -1,0 +1,51 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  agent_id: MyString
+  political_party_id: MyString
+  region_id: MyString
+  constituency_id: MyString
+  polling_station_id: MyString
+  title: MyString
+  firstname: MyString
+  lastname: MyString
+  gender_id: MyString
+  agent_photo: MyString
+  image_path: MyString
+  agent_signature_image: MyString
+  phone_number: MyString
+  email_address: MyString
+  hq_address_line_1: MyString
+  hq_address_line_2: MyString
+  city: MyString
+  town_id: MyString
+  gps_coordinates: MyString
+  nearest_landmark: MyString
+  active_status: false
+  del_status: false
+  user_id: 1
+
+two:
+  agent_id: MyString
+  political_party_id: MyString
+  region_id: MyString
+  constituency_id: MyString
+  polling_station_id: MyString
+  title: MyString
+  firstname: MyString
+  lastname: MyString
+  gender_id: MyString
+  agent_photo: MyString
+  image_path: MyString
+  agent_signature_image: MyString
+  phone_number: MyString
+  email_address: MyString
+  hq_address_line_1: MyString
+  hq_address_line_2: MyString
+  city: MyString
+  town_id: MyString
+  gps_coordinates: MyString
+  nearest_landmark: MyString
+  active_status: false
+  del_status: false
+  user_id: 1

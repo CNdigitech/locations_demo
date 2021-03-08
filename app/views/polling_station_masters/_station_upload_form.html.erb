@@ -1,0 +1,40 @@
+<div id="station_file_form"class="w3-modal w3-animate-opacity"  style="display: block">
+    
+    <%= simple_form_for @polling_station_master,  url:  station_bulk_upload_path(@polling_station_master),:html => {:autocomplete => "off", :multipart=> true} do |f| %>
+        <%= f.error_notification %>
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Polling Stations</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span onclick="document.getElementById('station_file_form').style.display='none'"
+                        >&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">               
+                    <div class = "wrapper">
+                        <p style="font-size: 15px;">Click <b style=" font-size: 15px;"><%= link_to "<i class='fa fa-'> Here </i>".html_safe, station_sample_csv_path %></b> to download a sample csv file. Make sure your csv file follows the same format.</p>
+                        <hr/>
+                        <label>Import CSV</label>
+
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file"  name="polling_station_master[file]" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                                <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                   
+
+                </div>
+                <div class="modal-footer">
+                     <%= f.submit "Submit", class: "btn btn-md btn-primary btn-block" %>
+                    <input type="hidden" name="val" value="status"/>
+                </div>
+                </div>
+            </div>
+    <% end %>
+
+</div>
+

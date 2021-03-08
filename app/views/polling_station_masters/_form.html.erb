@@ -1,0 +1,45 @@
+<div class="my-form col-lg-6 ">
+  
+  <%= simple_form_for(@polling_station_master) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-inputs">
+      <%= f.input :name, label:"Polling Station"%>
+      <%= f.input :registered_voters %>
+      <%= f.input :region_id, collection: @regions, label_method: :name, value_method: :region_id,:input_html =>{id: "ps_region"}, label:"Region"  %>
+      <%= f.input :constituency_id, collection: @constituencies, label_method: :name, value_method: :constituency_id,:input_html =>{id: "ps_constituency"}, label:"Constituency"  %>
+      <%= f.input :constituency_collation_center, label:"Is this polling station a constituency collation center?" %>
+      <%= f.input :ec_polling_station_code %>
+      <%= f.input :polling_station_gps %>
+      <%= f.input :user_id, input_html:{value: current_user.id}, as: :hidden %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, class:"btn btn-md btn-primary" %>
+      <%= link_to 'Back', polling_station_masters_path, class:"btn btn-md btn-outline-dark"%>
+    </div>
+  <% end %>
+</div>
+
+
+<script>
+  var region_id = $('#ps_region');
+
+  region_id.change(function() {
+      console.log("For region id:: " + region_id.val());
+      // $('[data-toggle="tooltip"]').tooltip();
+
+      $.ajax({
+          type: "POST",
+          url: '<%= region_constituency_ps_path %>',
+          data: {
+              region_id: region_id.val()
+          },
+          dataType: "script"
+          // return false
+      });
+
+  });
+
+</script>

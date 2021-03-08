@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  election_event_id: MyString
+  event_name: MyString
+  election_type: MyString
+  election_date: 2021-02-11 13:40:27
+  notes: MyText
+  ec_election_reference: MyString
+  active_status: false
+  del_status: false
+  user_id: 1
+
+two:
+  election_event_id: MyString
+  event_name: MyString
+  election_type: MyString
+  election_date: 2021-02-11 13:40:27
+  notes: MyText
+  ec_election_reference: MyString
+  active_status: false
+  del_status: false
+  user_id: 1

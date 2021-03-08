@@ -1,0 +1,77 @@
+<div class="my-form col-lg-6 ">
+  
+  <%= simple_form_for(@political_party_master) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-inputs">
+      <div class="row">
+        <div class="col-lg-6">
+          <%= f.input :name %>
+          <%= f.input :region_id, collection: @regions, label_method: :name, value_method: :region_id,:input_html =>{id: "pp_region"}, label:"Region"  %>
+          <%= f.input :district_id, collection: @districts, label_method: :name, value_method: :district_id,:input_html =>{id: "pp_district"}, label:"District"  %>
+          <%#= f.input :town_id, collection: @towns, label_method: :name, value_method: :town_id,:input_html =>{id: "pp_town"}, label:"Town"  %>
+          <%= f.input :town_id %>
+          <%= f.input :party_initial, input_html:{value: "#{@party_initial}"}, as: :hidden %>
+          <%= f.input :nearest_landmark %>
+        </div>
+        <div class="col-lg-6">
+          <%= f.input :party_logo %>
+            <%#= link_to 'x', delete_image_attachment_political_party_master_url(political_party_master.party_logo.signed_id),
+                                            method: :delete,
+                                            data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" %>     
+          <%= f.input :contact_number %>
+          <%= f.input :email_address %>
+          <%= f.input :hq_address_line_1 %>
+          <%= f.input :hq_address_line_2 %>
+        </div>
+      </div>
+     
+      
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, class:"btn btn-md btn-primary" %>
+      <%= link_to 'Back', political_party_masters_path, class:"btn btn-md btn-outline-dark"%>
+    </div>
+  <% end %>
+</div>
+
+
+<script>
+  var region_id = $('#pp_region');
+  var district_id = $('#pp_district');
+
+
+  region_id.change(function() {
+      console.log("For region id:: " + region_id.val());
+      // $('[data-toggle="tooltip"]').tooltip();
+
+      $.ajax({
+          type: "POST",
+          url: '<%= region_district_pp_path %>',
+          data: {
+              region_id: region_id.val()
+          },
+          dataType: "script"
+          // return false
+      });
+
+  });
+
+   district_id.change(function() {
+      console.log("For district id:: " + district_id.val());
+      // $('[data-toggle="tooltip"]').tooltip();
+
+      $.ajax({
+          type: "POST",
+          url: '<%= district_town_pp_path %>',
+          data: {
+              district_id: district_id.val()
+          },
+          dataType: "script"
+          // return false
+      });
+
+  });
+</script>

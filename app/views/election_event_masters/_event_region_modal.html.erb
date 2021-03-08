@@ -1,0 +1,153 @@
+<% if params["val"] == "on_error" %>
+<div id="region_form" class="w3-modal w3-animate-opacity" style="display: block">
+    
+<%#= simple_form_for :region_data , :url => event_constituency_modal_path, :method => :get, html:{autocomplete:'off'} do |f| %>
+    <%= f.input :constituency_id, label: false do  %>
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Constituency Selection</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span onclick="document.getElementById('region_form').style.display='none'"
+                    >&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">       
+            <%#= render 'layouts/messages' %>       
+                <table class="table table-striped table-condensed table-hover " id="find-table">
+                    <thead class="w3-black">
+                        <tr>
+                            <th>Constituency</th>
+                            <th> Select</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @con.each_with_index  do |region,index| %>
+                            <tr>
+                                <td><%= region.name %></td>
+                                <td>
+                                    <label>
+                                    <input name="constituency_ids[constituency_id][]" type="checkbox"  value="<%= region.constituency_id %>" />
+                                    
+                                    <span> </span>
+                                    </label>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+                <input type="hidden" name="val" value="on_error"/>
+
+            </div>
+            <div class="modal-footer">
+                <span onclick="document.getElementById('region_form').style.display='none'"
+                 class="btn btn-md btn-secondary" >Close</span>
+                 <%# <button class=" btn btn-md btn-primary" id="region-data">Next Step</button> %>
+                 <%= f.button :submit, class:"btn btn-md btn-primary", id:"all_submit"%>
+
+
+            </div>
+            </div>
+        </div>
+    <% end %>
+<%# end %>
+
+ 
+</div>
+<% else %>
+<div id="region_form" class="w3-modal w3-animate-opacity" style="display: none">
+    
+<%#= simple_form_for :region_data , :url => event_constituency_modal_path, :method => :get, html:{autocomplete:'off'} do |f| %>
+    <%= f.input :constituency_id, label: false do  %>
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Constituency Selection</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span onclick="document.getElementById('region_form').style.display='none'"
+                    >&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">               
+                <table class="table table-striped table-condensed table-hover " id="find-table">
+                    <thead class="w3-black">
+                        <tr>
+                            <th>Constituency</th>
+                            <th> Select</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @con.each_with_index  do |region,index| %>
+                            <tr>
+                                <td><%= region.name %></td>
+                                <td>
+                                    <label>
+                                    <input name="constituency_ids[constituency_id][]" type="checkbox"  value="<%= region.constituency_id %>" />
+                                    
+                                    <span> </span>
+                                    </label>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+                <input type="hidden" name="val" value="on_error"/>
+
+            </div>
+            <div class="modal-footer">
+                <span onclick="document.getElementById('region_form').style.display='none'"
+                 class="btn btn-md btn-secondary" >Close</span>
+                 <%# <button class=" btn btn-md btn-primary" id="region-data">Next Step</button> %>
+                 <%= f.button :submit, class:"btn btn-md btn-primary", id:"all_submit"%>
+
+
+            </div>
+            </div>
+        </div>
+    <% end %>
+<%# end %>
+
+ 
+</div>
+<% end %>
+
+
+ <style>
+    .bottom-btn{
+      margin-top: 5%;
+      /*margin-left: 55%;*/
+    }
+  </style>
+
+
+  <script>
+
+       $( "#region-data" ).click(function() {
+        var url = "<%= event_constituency_modal_url %>";
+        // var regions = [$("input[type=checkbox][name='region_data[region_id]']").val()];
+
+        var regions =  $("#find-table input:checkbox:checked").map(function(){
+                            return $(this).val();
+                        }).get();
+
+    
+        console.log("we are here with region ids = "+regions);
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: 'script',
+            data: {
+                region_id: regions
+            }, // serializes the form's elements.
+            success: function(data)
+            {
+                // $("#district_modal").html(data);
+                // alert("success")
+            }
+        });
+        return false;
+
+    });
+
+  </script>

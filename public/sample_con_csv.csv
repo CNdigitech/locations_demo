@@ -1,0 +1,3 @@
+constituency_id   ,region_id,district_id,name,ec_constituency_code,registered_voters
+,GH-ASH0017,ADA0003,La Kotopon,ec123/123,12333
+,GH-AHA0023,ASU0004,Gyaman South,ec123/18,12001

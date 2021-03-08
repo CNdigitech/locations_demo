@@ -1,0 +1,43 @@
+
+   
+    <div class="my-content"> 
+        <h2> Towns </h2>
+        <div class="new-btn float-right">
+            <%= link_to new_town_master_path, class:"btn btn-outline-dark" do %>
+                <span class="glyphicon glyphicon-plus"></span>
+                New Town
+            <% end %>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>District</th>
+                    <th>Town center GPS</th>
+                    <th>Status</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <% @town_masters.each_with_index do |town_master, index| %>
+                <tr>
+                    <td><%= index+1 %></td>
+                    <td><%= town_master.town_id %></td>
+                    <td><%= town_master.name %></td>
+                    <td><%= town_master.district_master.name %></td>
+                    <td><%= town_master.town_center_gps %></td>
+                    <td><% if town_master.active_status%>Active<% else %>Inactive<%end%></td>
+                    <td><%= link_to 'Edit', edit_town_master_path(town_master), class:"btn btn-sm btn-outline-dark" %></td>
+                    <td><%= link_to 'Delete', town_master, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" %></td>
+                </tr>
+                <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>

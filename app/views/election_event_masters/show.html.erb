@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Election event:</strong>
+  <%= @election_event_master.election_event_id %>
+</p>
+
+<p>
+  <strong>Event name:</strong>
+  <%= @election_event_master.event_name %>
+</p>
+
+<p>
+  <strong>Election type:</strong>
+  <%= @election_event_master.election_type %>
+</p>
+
+<p>
+  <strong>Election date:</strong>
+  <%= @election_event_master.election_date %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @election_event_master.notes %>
+</p>
+
+<p>
+  <strong>Ec election reference:</strong>
+  <%= @election_event_master.ec_election_reference %>
+</p>
+
+<p>
+  <strong>Active status:</strong>
+  <%= @election_event_master.active_status %>
+</p>
+
+<p>
+  <strong>Del status:</strong>
+  <%= @election_event_master.del_status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @election_event_master.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_election_event_master_path(@election_event_master) %> |
+<%= link_to 'Back', election_event_masters_path %>

@@ -1,0 +1,63 @@
+<div class="login-screen col-12">
+  <div class=" login-text col-7 float-left">
+    <div class="row">
+      <!--<div class="phone-img col-bg-4">
+        <%#= image_tag "phone.svg" %>
+      </div>
+      <div class="txt col-7">
+        <div class="main-txt"><b>Location App Demo</b></div>
+        <h6>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Ultrices mauris sem eu a nisl. Et, ipsum odio quam amet, leo, 
+          vestibulum. Venenatis, et urna nulla ut nulla. 
+        </h6>
+      </div>-->
+    </div>
+  </div>
+  <div class="login-form-space col-5 float-right">
+    <div class="row buffer">
+ 
+    </div>
+    <div class=" login-form-card ">
+      <h2><b>Sign up</b></h2>
+
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :email,
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "email" }%>
+          <%= f.input :username,
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "username" }%>
+          <%= f.input :password,
+                      required: true,
+                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                      input_html: { autocomplete: "new-password" } %>
+          <%= f.input :password_confirmation,
+                      required: true,
+                      input_html: { autocomplete: "new-password" } %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Sign up", class:"btn btn-md btn-primary" %>
+        </div>
+      <% end %>
+      <br>
+      <%= render "devise/shared/links" %>
+    </div>
+    <div class="row buffer">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+

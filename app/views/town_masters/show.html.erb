@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Town:</strong>
+  <%= @town_master.town_id %>
+</p>
+
+<p>
+  <strong>District:</strong>
+  <%= @town_master.district_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @town_master.name %>
+</p>
+
+<p>
+  <strong>Town center gps:</strong>
+  <%= @town_master.town_center_gps %>
+</p>
+
+<%= link_to 'Edit', edit_town_master_path(@town_master) %> |
+<%= link_to 'Back', town_masters_path %>

@@ -1,0 +1,3 @@
+agent_id,political_party_id,region_id,constituency_id,polling_station_id,title,firstname,lastname,gender_id,phone_number,email_address,hq_address_line_1,hq_address_line_2,city,town_id,gps_coordinates,nearest_landmark
+,PPA015,GH-ASH0024,asha-CON0006,POL017,Mr,Kweku,Ananse,M,233243434345,kweku@ananse.com,Nyansa street,Hs419,Accra,Taifa,55566666 -777888999,Church steeple
+,PPA013,GH-AHA0023,asha-CON0005,POL018,Mrs,Okonore,Yaa,F,233243434345,okonore@yaa.com,Nyansa street,Hs419,Accra,Taifa,55566666 -777888998,Church steeple

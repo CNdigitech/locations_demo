@@ -1,0 +1,45 @@
+<h1>Editing Constituency</h1>
+
+<div class="my-form col-lg-6 col-lg-offset-3">
+  
+  <%= simple_form_for(@constituency) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-inputs">
+      <%= f.input :name %>
+      <%= f.input :region_id, collection: @regions, label_method: :name, value_method: :region_id, selected: @region,:input_html =>{id: "region1"}, label:"Region"  %>
+      <%= f.input :district_id, collection: @districts, label_method: :name, value_method: :district_id,:input_html =>{id: "district1"}, label:"District"  %>
+      <%= f.input :ec_constituency_code %>
+      <%= f.input :registered_voters %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, class:"btn btn-md btn-primary" %>
+      <%= link_to 'Back', constituencies_path, class:"btn btn-md btn-outline-dark" %>    
+      </div>
+  <% end %>
+</div>
+
+<script>
+  var region_id = $('#region1');
+ 
+// 
+
+  region_id.change(function() {
+      console.log("For region id:: " + region_id.val());
+      // $('[data-toggle="tooltip"]').tooltip();
+
+      $.ajax({
+          type: "POST",
+          url: '<%= region_district_con_path %>',
+          data: {
+              region_id: region_id.val()
+          },
+          dataType: "script"
+          // return false
+      });
+
+  });
+</script>
+ 

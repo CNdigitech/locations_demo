@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Constituency:</strong>
+  <%= @constituency.constituency_id %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @constituency.region_id %>
+</p>
+
+<p>
+  <strong>District:</strong>
+  <%= @constituency.district_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @constituency.name %>
+</p>
+
+<p>
+  <strong>Ec constituency code:</strong>
+  <%= @constituency.ec_constituency_code %>
+</p>
+
+<p>
+  <strong>Registered voters:</strong>
+  <%= @constituency.registered_voters %>
+</p>
+
+<%= link_to 'Edit', edit_constituency_path(@constituency) %> |
+<%= link_to 'Back', constituencies_path %>
