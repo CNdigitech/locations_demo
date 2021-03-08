@@ -18,8 +18,8 @@ RUN bundle config --global frozen 1
 RUN bundle install --without production test
 
 COPY . /usr/src/app
-RUN bundle exec rake db:migrate
 RUN yarn install --check-files
+RUN bundle exec rake db:migrate
 RUN bundle exec rake assets:precompile --trace
 
 EXPOSE 3000
